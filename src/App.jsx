@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import './App.css'
+import {Header} from "./components/index.jsx"
 
 function App() {
   return (
     <>
-    <h1>VideoTube: A Youtube-like video streaming platform</h1>
+      <Header/>
+    
     </>
   )
 }
