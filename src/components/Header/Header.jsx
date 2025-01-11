@@ -2,13 +2,19 @@ import React, { useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { GoPlus } from "react-icons/go";
 import ProfileButton from './ProfileButton';
-function Header() {
+import { FaBars } from 'react-icons/fa';
+function Header(props) {
   const [isloggedIn , setisloggedIn] = useState(true)
   return (
     <>
         <nav className="navbar bg-black">
         <div className="container-fluid" style={{display:'flex'}}>
-            <a className="navbar-brand text-light fs-2">VideoTube</a>
+            <div style={{display:"flex"}}>
+              <div className="top_section" style={{marginRight:"10px"}}>
+                  <FaBars onClick={props.togglefxn}/>
+              </div>
+              <a className="navbar-brand text-light fs-2">VideoTube</a>
+            </div>
             <form className="d-flex" style={{flex:1,width:'100%',maxWidth:'50%'}} role="search">
             <input className="form-control me-2 bg-black text-light"  type="search" placeholder="Search" aria-label="Search"/>
             <button className="btn btn-dark" type="submit">
