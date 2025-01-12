@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
+import AuthContext from "../contexts/Auth/AuthContext";
 
-function ProfileButton(props) {
+function ProfileButton(props){
+  const {setIsLoggedIn} = useContext(AuthContext)
+  const logout = ()=>{
+    localStorage.removeItem('token')
+    setIsLoggedIn(false)
+    props.setCredentials({email:"" , password: ""})
+  }
   return (
     <div className="dropdown">
       <button
@@ -48,9 +55,7 @@ function ProfileButton(props) {
           <hr className="dropdown-divider" />
         </li>
         <li>
-          <a className="dropdown-item" href="#">
-            Logout
-          </a>
+          <button className="dropdown-item" onClick={logout}>Logout</button>
         </li>
       </ul>
     </div>

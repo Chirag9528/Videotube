@@ -50,7 +50,7 @@ function Sidebar(props) {
             <section className="routes">
                 {
                     routes.map((route)=>{
-                        return <NavLink activeClassName="active" to={route.path} key = {route.name} className="link">
+                        return <NavLink  to={route.path} key = {route.name} className="link">
                             <div className="icon">{route.icon}</div>
                             <AnimatePresence>
                                 {props.isOpen && <motion.div className="link_text">{route.name}</motion.div>}
