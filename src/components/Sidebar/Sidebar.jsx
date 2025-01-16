@@ -38,7 +38,7 @@ const routes = [
 
 function Sidebar(props) {
   return (
-    <div className='main-container'>
+    <div>
         <motion.div animate={{
             width:props.isOpen ? "200px" : "50px",
             transition: {

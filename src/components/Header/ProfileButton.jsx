@@ -30,7 +30,7 @@ function ProfileButton(props){
           <CgProfile/>
         )}
       </button>
-      <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
         <li>
           <a className="dropdown-item" href="#">
             Update Account Details

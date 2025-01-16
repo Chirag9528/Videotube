@@ -36,19 +36,19 @@ function Header(props) {
         'Content-Type' : 'application/json'
       },
       body : JSON.stringify({email : credentials.email , password : credentials.password})
-    });
+    }).then(response => response.json())
+    .catch(error => console.log("Error: ",error));
     
-    const json = await response.json()
-    if (json.success){
+    if (response && response.success){
       refClose.current.click()
       setIsLoggedIn(true)
-      localStorage.setItem('token',json.data.accessToken) 
-      localStorage.setItem('avatar' , json.data.user.avatar)
+      localStorage.setItem('token',response.data.accessToken) 
+      localStorage.setItem('avatar' , response.data.user.avatar)
     }
     else{
-      alert("Try Again")
+      alert("Invalid Credentials")
     }
-    console.log(json)
+    console.log(response)
   }
   
   useEffect(()=>{
@@ -116,7 +116,7 @@ function Header(props) {
 
   return (
     <>
-        <nav className="navbar bg-black">
+        <nav className="navbar bg-black" style={{width : "100%"}}>
         <div className="container-fluid" style={{display:'flex'}}>
             <div style={{display:"flex"}}>
               <div className="top_section" style={{marginRight:"10px"}}>

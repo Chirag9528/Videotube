@@ -11,12 +11,18 @@ function App() {
   const toggle = () => setIsOpen(!isOpen)
   return (
       <>
-        <Header togglefxn = {toggle}/>
-        <div style={{display:"flex"}}>
-          <Sidebar isOpen = {isOpen} togglefxn = {toggle}/>
-          <main>
-            <Outlet/>
-          </main>
+        <div style={{}}>
+          <div style={{}}>
+            <Header togglefxn = {toggle}/>
+          </div>
+          <div style={{display : "flex" }}>
+            <div style={{}}>
+              <Sidebar isOpen = {isOpen} togglefxn = {toggle}/>
+            </div>
+            <main style={{}}>
+              <Outlet/>
+            </main>
+          </div>
         </div>
       </>
   )
