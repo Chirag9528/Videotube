@@ -4,8 +4,12 @@ import { GoPlus } from "react-icons/go";
 import ProfileButton from './ProfileButton';
 import { FaBars } from 'react-icons/fa';
 import AuthContext from '../contexts/Auth/AuthContext';
+import MenuContext from '../contexts/MenuButton/MenuContext';
+import { Link } from 'react-router-dom';
 function Header(props) {
   const {isloggedIn , setIsLoggedIn} = useContext(AuthContext)
+  const {isOpen , setIsOpen} = useContext(MenuContext)
+  const toggle = () => setIsOpen(!isOpen)
 
   const [credentials , setCredentials] = useState({email:"", password:""});
   
@@ -72,7 +76,7 @@ function Header(props) {
     try {
         // Prepare FormData
         const formData = new FormData();
-        formData.set("email", registercredentials.email);
+        formData.append("email", registercredentials.email);
         formData.append("password", registercredentials.password);
         formData.append("fullName", registercredentials.fullName);
         formData.append("username", registercredentials.username);
@@ -120,7 +124,7 @@ function Header(props) {
         <div className="container-fluid" style={{display:'flex'}}>
             <div style={{display:"flex"}}>
               <div className="top_section" style={{marginRight:"10px"}}>
-                  <FaBars onClick={props.togglefxn}/>
+                  <FaBars onClick={toggle}/>
               </div>
               <a className="navbar-brand text-light fs-2">VideoTube</a>
             </div>
@@ -140,9 +144,11 @@ function Header(props) {
             {
               isloggedIn &&
               <div style={{display:'flex'}}>
+                <Link to="/publishvideo">
                 <button className="btn btn-dark" style={{height:'3rem'}}>
                   <GoPlus style={{fontSize:'1.5rem'}}/> Create
                 </button>
+                </Link>
                 <ProfileButton avatar={localStorage.getItem('avatar')} setCredentials={setCredentials}/>
               </div>
             }

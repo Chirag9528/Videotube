@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {AnimatePresence, motion} from 'framer-motion';
 import { AiFillHome } from "react-icons/ai";
 import { FaBars, FaHistory } from "react-icons/fa";
@@ -7,6 +7,7 @@ import { AiFillLike } from "react-icons/ai";
 import { MdSubscriptions } from "react-icons/md";
 
 import { NavLink } from 'react-router-dom';
+import MenuContext from '../contexts/MenuButton/MenuContext';
 
 const routes = [
     {
@@ -37,10 +38,11 @@ const routes = [
 ]
 
 function Sidebar(props) {
+    const {isOpen} = useContext(MenuContext)
   return (
     <div>
         <motion.div animate={{
-            width:props.isOpen ? "200px" : "50px",
+            width:isOpen ? "200px" : "50px",
             transition: {
                 duration: 0.5,
                 type: "spring",
@@ -53,7 +55,7 @@ function Sidebar(props) {
                         return <NavLink  to={route.path} key = {route.name} className="link">
                             <div className="icon">{route.icon}</div>
                             <AnimatePresence>
-                                {props.isOpen && <motion.div className="link_text">{route.name}</motion.div>}
+                                {isOpen && <motion.div className="link_text">{route.name}</motion.div>}
                             </AnimatePresence>
                         </NavLink>
                     })

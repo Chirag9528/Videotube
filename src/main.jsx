@@ -9,6 +9,8 @@ import LikedVideos from './pages/LikedVideos.jsx'
 import Playlist from './pages/Playlist.jsx'
 import Subscription from './pages/Subscription.jsx'
 import AuthContextProvider from './components/contexts/Auth/AuthContextProvider.jsx'
+import PublishVideo from './pages/PublishVideo.jsx'
+import MenuContextProvider from './components/contexts/MenuButton/MenuContextProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,8 +34,12 @@ const router = createBrowserRouter([
           element: <Playlist/>
         },
         {
-          path: "subscriptions",
+          path: "/subscriptions",
           element: <Subscription/>
+        },
+        {
+          path: "/publishvideo",
+          element: <PublishVideo/>
         }
     ],
 },
@@ -42,7 +48,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthContextProvider>
+      <MenuContextProvider>
       <RouterProvider router={router}/>
+      </MenuContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
 )
