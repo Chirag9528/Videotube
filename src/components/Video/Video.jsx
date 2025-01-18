@@ -30,14 +30,14 @@ function Video(props) {
           Your browser does not support the video tag.
         </video>
         <div className="card-body p-0 my-2">
-          <div class="row g-0">
-            <div class="col-md-2" style={{"display" : "flex" , "justify-content" : "center"}}>
-              <img src={props.obj.createdBy.avatar} class="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} alt="..."/>
+          <div className="row g-0">
+            <div className="col-md-2" style={{display : "flex" , justifyContent : "center"}}>
+              <img src={props.obj.createdBy.avatar} className="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} alt="..."/>
             </div>
-            <div class="col-md-10">
-              <div class="">
-                <p class="card-text m-0 px-2 text-start">{props.obj.title}</p>
-                <p class="card-text px-2 text-start" style={{color: "rgb(169 , 169 , 169)"}}>{props.obj.createdBy.username}</p>
+            <div className="col-md-10">
+              <div className="">
+                <p className="card-text m-0 px-2 text-start">{props.obj.title}</p>
+                <p className="card-text px-2 text-start" style={{color: "rgb(169 , 169 , 169)"}}>{props.obj.createdBy.username}</p>
               </div>
             </div>
         </div>

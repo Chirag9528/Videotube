@@ -1,6 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { BiLike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
+import MenuContext from '../contexts/MenuButton/MenuContext';
+import Comments from './Comments';
 
 function VideoBig(props) {
     const [isSubscribed , setIsSubscribed] = useState(false)
@@ -10,6 +12,8 @@ function VideoBig(props) {
     useEffect(()=>{
         videoRef.current.play()
     })
+
+    const {isOpen} = useContext(MenuContext)
 
     const togglesubscription = async ()=>{
       try {
@@ -106,7 +110,8 @@ function VideoBig(props) {
     
 
     return (
-    <div className="card ms-4 p-0" style={{color:"white" , background: "rgb(0,0,0)"}}>
+    <>
+    <div className="card ms-4 p-0" style={{color:"white" , background: "rgb(0,0,0)" , height:`${isOpen ? '95vh' : '105vh'}` , width:`${isOpen ? '80vw' : '90vw'}`}}>
         <video
             ref={videoRef}
             style={{borderRadius : "15px" }}
@@ -115,17 +120,17 @@ function VideoBig(props) {
           <source src={props.obj.videoFile} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="card-body p-0 my-2">
-          <div class="row g-0">
-            <div class="col-md-2" style={{"display" : "flex" , "justify-content" : "center"}}>
-              <img src={props.obj.createdBy.avatar} class="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} width="60px" alt="..."/>
+        <div className="card-body p-0 my-2" style={{display:"flex" , flexDirection:"column"}}>
+          <h4 className="card-text m-2 px-2 text-start">{props.obj.title}</h4>
+          <div className="row g-0 my-2" style={{}}>
+            <div className="col-md-1 px-4" style={{"display" : "flex" , justifyContent : "left"}}>
+              <img src={props.obj.createdBy.avatar} className="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} width="60px" alt="..."/>
             </div>
-            <div class="col-md-8" style={{display:"flex" , alignItems:"center"}}>
-              <div class="col-md-4" style={{}}>
-                <p class="card-text m-0 px-2 text-start">{props.obj.title}</p>
-                <p class="card-text px-2 text-start" style={{color: "rgb(169 , 169 , 169)"}}>{props.obj.createdBy.username}</p>
+            <div className="col-md-9" style={{display:"flex" , alignItems:"center"}}>
+              <div className="" style={{ display : "flex"}}>
+                <p className="card-text text-start" style={{color: "rgb(169 , 169 , 169)" , paddingLeft:"10px" , paddingRight:"40px"}}>{props.obj.createdBy.username}</p>
               </div>
-              <div class="" style={{}}>
+              <div className="" style={{}}>
                 <button className={`btn ${isSubscribed? 'btn-dark' : 'btn-light'}`} onClick={togglesubscription}>{isSubscribed? "Subscribed" : "Subscribe"}</button>
               </div>
             </div>
@@ -141,6 +146,8 @@ function VideoBig(props) {
         </div>
         </div>
     </div>
+    <Comments videoId = {props.obj._id}/>
+    </>
   )
 }
 
