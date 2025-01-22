@@ -3,8 +3,12 @@ import { BiLike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
 import MenuContext from '../contexts/MenuButton/MenuContext';
 import Comments from './Comments';
+import { useLocation } from 'react-router-dom';
 
-function VideoBig(props) {
+function VideoBig() {
+    const location = useLocation()
+    const {obj} = location.state || {}
+
     const [isSubscribed , setIsSubscribed] = useState(false)
     const [liked , setLiked] = useState(false)
 
@@ -17,7 +21,7 @@ function VideoBig(props) {
 
     const togglesubscription = async ()=>{
       try {
-        const response = await fetch( `http://localhost:8000/api/v1/subscriptions/c/${props.obj.createdBy._id}` , {
+        const response = await fetch( `http://localhost:8000/api/v1/subscriptions/c/${obj.owner}` , {
           method : "POST",
           headers : {
             'Content-Type' : 'application/json',
@@ -36,7 +40,7 @@ function VideoBig(props) {
 
     const togglelike = async ()=>{
       try {
-        const response = await fetch( `http://localhost:8000/api/v1/likes/toggle/v/${props.obj._id}` , {
+        const response = await fetch( `http://localhost:8000/api/v1/likes/toggle/v/${obj._id}` , {
           method : "POST",
           headers : {
             'Content-Type' : 'application/json',
@@ -56,7 +60,7 @@ function VideoBig(props) {
     useEffect(()=>{
       const checksubscription = async () => {
         try {
-            const response = await fetch( `http://localhost:8000/api/v1/subscriptions/check/${props.obj.createdBy._id}` , {
+            const response = await fetch( `http://localhost:8000/api/v1/subscriptions/check/${obj.owner}` , {
               method : "GET",
               headers : {
                 'Content-Type' : 'application/json',
@@ -83,7 +87,7 @@ function VideoBig(props) {
     useEffect(()=>{
       const checkLiked = async () => {
         try {
-            const response = await fetch( `http://localhost:8000/api/v1/likes/checklike/v/${props.obj._id}` , {
+            const response = await fetch( `http://localhost:8000/api/v1/likes/checklike/v/${obj._id}` , {
               method : "GET",
               headers : {
                 'Content-Type' : 'application/json',
@@ -117,18 +121,18 @@ function VideoBig(props) {
             style={{borderRadius : "15px" }}
             controls
         >
-          <source src={props.obj.videoFile} type="video/mp4" />
+          <source src={obj.videoFile} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="card-body p-0 my-2" style={{display:"flex" , flexDirection:"column"}}>
-          <h4 className="card-text m-2 px-2 text-start">{props.obj.title}</h4>
+          <h4 className="card-text m-2 px-2 text-start">{obj.title}</h4>
           <div className="row g-0 my-2" style={{}}>
             <div className="col-md-1 px-4" style={{"display" : "flex" , justifyContent : "left"}}>
-              <img src={props.obj.createdBy.avatar} className="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} width="60px" alt="..."/>
+              <img src={obj.avatar} className="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} width="60px" alt="..."/>
             </div>
             <div className="col-md-9" style={{display:"flex" , alignItems:"center"}}>
               <div className="" style={{ display : "flex"}}>
-                <p className="card-text text-start" style={{color: "rgb(169 , 169 , 169)" , paddingLeft:"10px" , paddingRight:"40px"}}>{props.obj.createdBy.username}</p>
+                <p className="card-text text-start" style={{color: "rgb(169 , 169 , 169)" , paddingLeft:"10px" , paddingRight:"40px"}}>{obj.ownername}</p>
               </div>
               <div className="" style={{}}>
                 <button className={`btn ${isSubscribed? 'btn-dark' : 'btn-light'}`} onClick={togglesubscription}>{isSubscribed? "Subscribed" : "Subscribe"}</button>
@@ -146,7 +150,7 @@ function VideoBig(props) {
         </div>
         </div>
     </div>
-    <Comments videoId = {props.obj._id}/>
+    <Comments videoId = {obj._id}/>
     </>
   )
 }

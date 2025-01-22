@@ -40,9 +40,10 @@ const routes = [
 function Sidebar(props) {
     const {isOpen} = useContext(MenuContext)
   return (
-    <div>
+    <div style={{}}>
         <motion.div animate={{
             width:isOpen ? "200px" : "50px",
+            height : "89vh",
             transition: {
                 duration: 0.5,
                 type: "spring",

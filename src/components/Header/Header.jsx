@@ -5,11 +5,12 @@ import ProfileButton from './ProfileButton';
 import { FaBars } from 'react-icons/fa';
 import AuthContext from '../contexts/Auth/AuthContext';
 import MenuContext from '../contexts/MenuButton/MenuContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function Header(props) {
   const {isloggedIn , setIsLoggedIn} = useContext(AuthContext)
   const {isOpen , setIsOpen} = useContext(MenuContext)
   const toggle = () => setIsOpen(!isOpen)
+  const navigate = useNavigate()
 
   const [credentials , setCredentials] = useState({email:"", password:""});
   
@@ -48,6 +49,7 @@ function Header(props) {
       setIsLoggedIn(true)
       localStorage.setItem('token',response.data.accessToken) 
       localStorage.setItem('avatar' , response.data.user.avatar)
+      navigate(0) // to refresh the page
     }
     else{
       alert("Invalid Credentials")
@@ -130,9 +132,9 @@ function Header(props) {
             </div>
             <form className="d-flex" style={{flex:1,width:'100%',maxWidth:'50%'}} role="search">
             <input className="form-control me-2 bg-black text-light"  type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-dark" type="submit">
+            <div className="btn btn-dark">
               <IoIosSearch style={{fontSize:'1.5rem'}}/>
-            </button>
+            </div>
             </form>
             {
               !isloggedIn &&
@@ -160,7 +162,7 @@ function Header(props) {
         Launch demo modal
         </button>
         <div className="modal fade" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
             <div className="modal-header">
                 <h1 className="modal-title fs-5" id="loginModalLabel">VideoTube</h1>
@@ -196,7 +198,7 @@ function Header(props) {
         Launch demo modal
         </button>
         <div className="modal fade" id="registerModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog modal-lg">
+        <div className="modal-dialog modal-lg modal-dialog-centered">
             <div className="modal-content">
             <div className="modal-header">
                 <h1 className="modal-title fs-5" id="exampleModalLabel">VideoTube</h1>

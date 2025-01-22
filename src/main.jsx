@@ -11,6 +11,8 @@ import Subscription from './pages/Subscription.jsx'
 import AuthContextProvider from './components/contexts/Auth/AuthContextProvider.jsx'
 import PublishVideo from './pages/PublishVideo.jsx'
 import MenuContextProvider from './components/contexts/MenuButton/MenuContextProvider.jsx'
+import { VideoBig } from './components/index.jsx'
+import PlaylistPage from './components/PlayList/PlaylistPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
         {
           path: "/publishvideo",
           element: <PublishVideo/>
+        },
+        {
+          path : "/playvideo",
+          element: <VideoBig/>
+        },
+        {
+          path : "/showplaylist",
+          element: <PlaylistPage/>
         }
     ],
 },

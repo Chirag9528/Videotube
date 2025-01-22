@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState} from "react";
+import {useNavigate} from 'react-router-dom'
 import { CgProfile } from "react-icons/cg";
 import AuthContext from "../contexts/Auth/AuthContext";
 
 function ProfileButton(props){
   const {setIsLoggedIn} = useContext(AuthContext)
+  const navigate = useNavigate()
   const logout = ()=>{
     localStorage.removeItem('token')
     setIsLoggedIn(false)
     props.setCredentials({email:"" , password: ""})
+    navigate(0)
   }
   return (
     <div className="dropdown">

@@ -103,3 +103,11 @@ a {
 .icon {
   font-size: 1.6rem;
 }
+
+.hoverbackgroundcustom :hover {
+  background-color: rgb(39,39 , 39);
+}
+
+.card.container::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}

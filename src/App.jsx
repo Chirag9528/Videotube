@@ -11,7 +11,7 @@ function App() {
           <div style={{}}>
             <Header/>
           </div>
-          <div style={{display : "flex" }}>
+          <div style={{display : "flex"}}>
             <div style={{}}>
               <Sidebar/>
             </div>
