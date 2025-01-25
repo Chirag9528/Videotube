@@ -10,6 +10,19 @@ function Playlist() {
   const refClose = useRef(null);
   const navigate = useNavigate()
 
+  const [editplaylistdetail , setEditPlayListDetail] = useState("")
+  const editref = useRef(null)
+  const editrefClose = useRef(null)
+
+  const [editmodalvisibility , setEditModalVisibility] = useState(false)
+
+  useEffect(()=>{
+    if (editmodalvisibility === true){
+      editref.current.click()
+    }
+  },[editmodalvisibility])
+
+
   const OnChange = (e)=>{
     e.preventDefault();
     setPlayListDetail({...playlistDetail , [e.target.name] : e.target.value})
@@ -50,6 +63,28 @@ function Playlist() {
       alert('PlayList Created Successfully');
       console.log(response)
       navigate(0)
+    }
+    else{
+      alert('Try Again')
+    }
+  }
+
+  const editplaylist = async ()=>{
+    const response = await fetch(`http://localhost:8000/api/v1/playlist/${editplaylistdetail._id}`,{
+      method : 'PATCH',
+      headers : {
+        'Content-Type' : 'application/json',
+        'Authorization' : localStorage.getItem('token')
+      },
+      body : JSON.stringify({name : editplaylistdetail.name , description : editplaylistdetail.description})
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error))
+
+    if (response && response.success){
+      navigate(0)
+      editrefClose.current.click()
+      alert('PlayList Update Successfully')
     }
     else{
       alert('Try Again')
@@ -105,11 +140,45 @@ function Playlist() {
     <div className="row row-cols-1 row-cols-md-3 g-4 m-2" style={{display : "flex"}}>
     {
       playlists.map((playlist)=>{
-        return <PlayListCard key = {playlist._id} playlist = {playlist}/>
+        return <PlayListCard key = {playlist._id} playlist = {playlist} setEditPlayListDetail={setEditPlayListDetail} onedit = {setEditModalVisibility}/>
       })
     }
     </div>
 
+    {/* Edit Modal */}
+    <button type="button" ref={editref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#editModal">
+      Launch demo modal
+    </button>
+    <div className="modal fade" id="editModal" tabIndex="-1" aria-labelledby="editModalLabel" aria-hidden="true" style={{color : "black"}}>
+    <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content">
+        <div className="modal-header">
+            <h1 className="modal-title fs-5" id="editModalLabel">Edit PlayList</h1>
+            <button type="button" ref={editrefClose} onClick={()=>{setEditModalVisibility(false)}} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div className="modal-body">
+            <form>
+              <div className="row mb-3" style={{display : "flex"}}>
+                <label htmlFor="Title" className="col-sm-2 col-form-label" style={{flex : "2"}}>Title</label>
+                  <div className="col-sm-10" style={{flex : "10"}}>
+                  <input type="text" value={editplaylistdetail.name || ''} onChange={(e)=>setEditPlayListDetail({...editplaylistdetail , [e.target.name] : e.target.value})} name="name" className="form-control" id="Title"/>
+                  </div>
+              </div>
+              <div className="row mb-3" style={{display : "flex"}}>
+                <label htmlFor="Desc" className="col-sm-2 col-form-label" style={{flex : "2"}}>Description</label>
+                  <div className="col-sm-10" style={{flex : "10"}}>
+                  <input type="text" value={editplaylistdetail.description || ''} onChange={(e)=>setEditPlayListDetail({...editplaylistdetail , [e.target.name] : e.target.value})} name="description" className="form-control" id="Desc"/>
+                  </div>
+              </div>
+            </form>
+        </div>
+        <div className="modal-footer">
+            <button type="button" className="btn btn-primary" onClick={editplaylist}>Update</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    {/* Edit Modal Ends here */}
   </div>
   )
 }

@@ -110,7 +110,7 @@ function CommentCard(props) {
                 <div style={{flex:"10" , textAlign:"left"}}>
                  @{props.comment.commentby.username}
                 </div>
-                 <button id="dropdownMenuButton" type='button' data-bs-toggle="dropdown"  aria-expanded="false" style={{background:"rgb(84,82,82)"}}>
+                 <button id="dropdownMenuButton" type='button' data-bs-toggle="dropdown"  aria-expanded="false" style={{background:"rgb(84,82,82)" , border : "none"}}>
                     <BsThreeDotsVertical />
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">

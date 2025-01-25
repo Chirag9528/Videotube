@@ -1,18 +1,42 @@
 import React , {useState , useRef} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 function PlayListCard(props) {
-  const playlistname = props.playlist.name;
-  const playlistdesc = props.playlist.description;
+  const playlistname = props.playlist.name
+  const playlistdesc = props.playlist.description
+  
   const navigate = useNavigate()
 
   const showplaylist = ()=>{  
     navigate("/showplaylist" , {state : {playlist : props.playlist}})
   }
 
+  const deleteplaylist = async ()=>{
+    const response = await fetch(`http://localhost:8000/api/v1/playlist/${props.playlist._id}`,{
+      method : 'DELETE',
+      headers : {
+        'Content-Type' : 'application/json',
+        'Authorization' : localStorage.getItem('token')
+      }
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error))
+
+    if (response && response.success){
+      alert('PlayList Deleted Successfully')
+      navigate(0)
+    }
+    else{
+      alert('Try Again')
+    }
+  }
+
+  
+
   return (
   
-    <div className='p-0' style={{marginRight:"20px" , marginTop : "0px", width: '359px', height: '325px',  position: 'relative'}} onClick={showplaylist}>
+    <div className='p-0' style={{marginRight:"20px" , marginTop : "0px", width: '359px', height: '325px',  position: 'relative'}}>
       <div className='card' style={{ position: 'absolute', top:'0px' , left:'26px',  width: '300px', height: '230px', backgroundColor: 'rgb(66,78,81)' }}>
         Div 1
       </div>
@@ -27,12 +51,22 @@ function PlayListCard(props) {
           style={{borderRadius: "15px"}}
           width="350px"
           height="230px"
+          onClick={showplaylist}
           />
-          
-
-          <div className="card-body p-0 my-2" style={{}}>
-              <p className="card-text m-0 px-2 text-start">{playlistname.length > 20 ? playlistname.slice(0,20) : playlistname}</p>
+          <div className="card-body p-0 my-2" style={{display:"flex"}}>
+            <div style={{flex : "10"}}>
+              <p className="card-text m-0 px-2 text-start">{playlistname.length > 30 ? playlistname.slice(0,30) + " ..." : playlistname}</p>
               <p className="card-text px-2 text-start" style={{color: "rgb(169 , 169 , 169)"}}>{playlistdesc.length > 30 ? (playlistdesc.slice(0,30) + " ...") : playlistdesc}</p>
+            </div>
+            <div className='py-1' style={{flex : "1"}}>
+              <button id="dropdownMenuButton" type='button' data-bs-toggle="dropdown"  aria-expanded="false" style={{background:"rgb(0,0,0)" , color:"white" , border : "none"}}>
+                    <BsThreeDotsVertical />
+              </button>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><button className='dropdown-item' onClick={()=>{props.setEditPlayListDetail({_id : props.playlist._id , name : playlistname , description : playlistdesc});props.onedit(true)}}>Edit</button></li>
+                  <li><button className='dropdown-item' onClick={deleteplaylist}>Delete</button></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
