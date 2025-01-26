@@ -5,6 +5,7 @@ import MenuContext from '../contexts/MenuButton/MenuContext';
 import Comments from './Comments';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BsThreeDotsVertical } from "react-icons/bs";
+import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
 
 
 function VideoBig() {
@@ -13,6 +14,8 @@ function VideoBig() {
 
     const [isSubscribed , setIsSubscribed] = useState(false)
     const [liked , setLiked] = useState(false)
+
+    const {setProgress} = useContext(LoadingBarContext)
 
     const videoRef = useRef(null)
     useEffect(()=>{
@@ -61,27 +64,27 @@ function VideoBig() {
 
     useEffect(()=>{
       const checksubscription = async () => {
-        try {
-            const response = await fetch( `http://localhost:8000/api/v1/subscriptions/check/${obj.owner}` , {
-              method : "GET",
-              headers : {
-                'Content-Type' : 'application/json',
-                'Authorization' : localStorage.getItem('token')
-              }
-            })
-            .then(response => response.json())
-            
-            if (response && response.success){
-              if (response.data === true){
-                setIsSubscribed(true)
-              }else{
-                setIsSubscribed(false)
-              }
-
-            }
-        } catch (error) {
-          console.log("Error: ",error)
+        
+        setProgress(20)
+        const response = await fetch( `http://localhost:8000/api/v1/subscriptions/check/${obj.owner}` , {
+          method : "GET",
+          headers : {
+            'Content-Type' : 'application/json',
+            'Authorization' : localStorage.getItem('token')
+          }
+        })
+        .then(response => response.json())
+        .catch(error => console.log(error))
+        setProgress(80)
+        
+        if (response && response.success){
+          if (response.data === true){
+            setIsSubscribed(true)
+          }else{
+            setIsSubscribed(false)
+          }
         }
+        setProgress(100)
       };
       checksubscription()
     },[])
@@ -89,6 +92,7 @@ function VideoBig() {
     useEffect(()=>{
       const checkLiked = async () => {
         try {
+            console.log("obj::::" , obj._id)
             const response = await fetch( `http://localhost:8000/api/v1/likes/checklike/v/${obj._id}` , {
               method : "GET",
               headers : {
@@ -107,7 +111,7 @@ function VideoBig() {
             }
             console.log(response)
         } catch (error) {
-          console.log("Error: ",error)
+          console.log("Erreeeeor: ",error)
         }
       };
       checkLiked()

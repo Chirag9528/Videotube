@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { GoPlus } from 'react-icons/go'
 import { Link, useNavigate } from 'react-router-dom'
 import PlayListCard from '../components/PlayList/PlayListCard';
+import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar';
 
 function Playlist() {
   const [playlists , setPlayLists] = useState([])
@@ -28,8 +29,11 @@ function Playlist() {
     setPlayListDetail({...playlistDetail , [e.target.name] : e.target.value})
   }
 
+  const {setProgress} = useContext(LoadingBarContext)
+
   useEffect(()=>{
     const getPlaylists = async ()=>{
+      setProgress(20)
       const response = await fetch('http://localhost:8000/api/v1/playlist/user/playlists' , {
         method : 'GET',
         headers : {
@@ -39,10 +43,12 @@ function Playlist() {
       })
       .then(response => response.json())
       .catch(error => console.log(error))
+      setProgress(40)
 
       if (response && response.success){
         setPlayLists(response.data)
       }
+      setProgress(100)
     }
     getPlaylists();
   },[])

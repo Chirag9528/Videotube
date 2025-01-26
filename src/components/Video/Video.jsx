@@ -1,5 +1,6 @@
-import React , {useState , useRef} from 'react'
+import React , {useState , useRef, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
+import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
 
 function Video(props) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -7,7 +8,10 @@ function Video(props) {
 
   const navigate = useNavigate()
 
+  const {setProgress} = useContext(LoadingBarContext)
+
   const handleThumbnailClick = (video) => {
+    setProgress(10)
     navigate("/playvideo" , {state : {obj : video}})  // state gets attached to location object... we use useLocation hook to get it
   };
   return (

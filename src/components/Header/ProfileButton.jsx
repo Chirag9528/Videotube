@@ -2,13 +2,20 @@ import React, { useContext, useState} from "react";
 import {useNavigate} from 'react-router-dom'
 import { CgProfile } from "react-icons/cg";
 import AuthContext from "../contexts/Auth/AuthContext";
+import LoadingBarContext from "../contexts/LoadingBar/LoadingBar";
 
 function ProfileButton(props){
   const {setIsLoggedIn} = useContext(AuthContext)
   const navigate = useNavigate()
+
+  const {setProgress} = useContext(LoadingBarContext)
+
   const logout = ()=>{
+    setProgress(20)
     localStorage.removeItem('token')
+    setProgress(50)
     setIsLoggedIn(false)
+    setProgress(100)
     props.setCredentials({email:"" , password: ""})
     navigate(0)
   }

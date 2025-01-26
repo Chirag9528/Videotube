@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Video from '../components/Video/Video'
-import { VideoBig } from '../components'
+import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar'
 
 function Home() {
 
   const [allvideos , setAllVideos] = useState([])
+  const {setProgress} = useContext(LoadingBarContext)
 
   useEffect(()=>{
     const fetchData = async()=>{
-      try {
-        const response = await fetch('http://localhost:8000/api/v1/videos/all/?page=1&limit=10&sortBy=title&sortType=asc', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        const data = await response.json();
-        setAllVideos(data.data)
-      } catch (error) {
-        console.log('Error:', error);
+      setProgress(20)
+      const response = await fetch('http://localhost:8000/api/v1/videos/all/?page=1&limit=10&sortBy=title&sortType=asc&query=', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .catch(error => console.log(error))
+      setProgress(60)
+
+      if (response && response.success){
+        setAllVideos(response.data)
       }
+      setProgress(100)
     };
     fetchData()
   } , [])

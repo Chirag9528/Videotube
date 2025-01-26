@@ -13,6 +13,8 @@ import PublishVideo from './pages/PublishVideo.jsx'
 import MenuContextProvider from './components/contexts/MenuButton/MenuContextProvider.jsx'
 import { VideoBig } from './components/index.jsx'
 import PlaylistPage from './components/PlayList/PlaylistPage.jsx'
+import SearchResultPage from './pages/SearchResultPage.jsx'
+import LoadingBarContextProvider from './components/contexts/LoadingBar/LoadingBarProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -50,6 +52,10 @@ const router = createBrowserRouter([
         {
           path : "/showplaylist",
           element: <PlaylistPage/>
+        },
+        {
+          path : "/searchresult",
+          element: <SearchResultPage/>
         }
     ],
 },
@@ -59,7 +65,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthContextProvider>
       <MenuContextProvider>
-      <RouterProvider router={router}/>
+        <LoadingBarContextProvider>
+          <RouterProvider router={router}/>
+        </LoadingBarContextProvider>
       </MenuContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,

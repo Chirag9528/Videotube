@@ -1,6 +1,7 @@
-import React , {useState , useRef} from 'react'
+import React , {useState , useRef, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { BsThreeDotsVertical } from "react-icons/bs";
+import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
 
 function PlayListCard(props) {
   const playlistname = props.playlist.name
@@ -8,7 +9,10 @@ function PlayListCard(props) {
   
   const navigate = useNavigate()
 
+  const {setProgress} = useContext(LoadingBarContext)
+
   const showplaylist = ()=>{  
+    setProgress(10)
     navigate("/showplaylist" , {state : {playlist : props.playlist}})
   }
 

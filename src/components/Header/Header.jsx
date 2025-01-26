@@ -6,6 +6,7 @@ import { FaBars } from 'react-icons/fa';
 import AuthContext from '../contexts/Auth/AuthContext';
 import MenuContext from '../contexts/MenuButton/MenuContext';
 import { Link, useNavigate } from 'react-router-dom';
+import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
 function Header(props) {
   const {isloggedIn , setIsLoggedIn} = useContext(AuthContext)
   const {isOpen , setIsOpen} = useContext(MenuContext)
@@ -119,6 +120,9 @@ function Header(props) {
     }
   };
 
+  const [searchquery , setSearchQuery] = useState("")
+
+  const {setProgress} = useContext(LoadingBarContext)
 
   return (
     <>
@@ -130,11 +134,18 @@ function Header(props) {
               </div>
               <a className="navbar-brand text-light fs-2">VideoTube</a>
             </div>
-            <form className="d-flex" style={{flex:1,width:'100%',maxWidth:'50%'}} role="search">
-            <input className="form-control me-2 bg-black text-light"  type="search" placeholder="Search" aria-label="Search"/>
-            <div className="btn btn-dark">
+            <form className="d-flex" style={{flex:1,width:'100%',maxWidth:'50%'}} role="search" 
+              onSubmit={(e)=>{
+                e.preventDefault();
+                setProgress(10)
+                navigate("/searchresult" , {state : {query : searchquery }});
+                setSearchQuery("")
+                }}
+              >
+            <input className="form-control me-2 bg-black text-light" value={searchquery} onChange={(e)=>{setSearchQuery(e.target.value)}} type="search" placeholder="Search" aria-label="Search"/>
+            <button className="btn btn-dark" disabled={searchquery.length === 0} type='submit'>
               <IoIosSearch style={{fontSize:'1.5rem'}}/>
-            </div>
+            </button>
             </form>
             {
               !isloggedIn &&

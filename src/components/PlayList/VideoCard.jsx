@@ -1,12 +1,16 @@
-import React, { useEffect , useState} from 'react'
+import React, { useContext, useEffect , useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { BsThreeDotsVertical } from "react-icons/bs";
+import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
 
 function VideoCard(props){
     const navigate = useNavigate()
     const [videodetails , setVideoDetails] = useState({})
+
+    const {setProgress} = useContext(LoadingBarContext)
     useEffect(()=>{
         const fetchvideo = async ()=>{
+            setProgress(30)
             const response = await fetch( `http://localhost:8000/api/v1/videos/${props.videoId}` , {
                 method : 'GET',
                 headers : {
@@ -15,10 +19,12 @@ function VideoCard(props){
             })
             .then(response => response.json())
             .catch(error => console.log(error))
+            setProgress(70)
 
             if (response && response.success){
                 setVideoDetails(response.data)
             }
+            setProgress(100)
         };
         fetchvideo()
     },[])
