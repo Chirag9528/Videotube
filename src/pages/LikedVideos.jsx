@@ -12,8 +12,9 @@ function LikedVideos(){
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization' : localStorage.getItem('token')
-          }
+            // 'Authorization' : localStorage.getItem('token')
+          },
+          credentials : "include"
         })
         .then(response => response.json())
         .catch(error=> console.log(error))

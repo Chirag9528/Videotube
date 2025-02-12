@@ -10,14 +10,29 @@ function ProfileButton(props){
 
   const {setProgress} = useContext(LoadingBarContext)
 
-  const logout = ()=>{
+  const logout = async ()=>{
     setProgress(20)
-    localStorage.removeItem('token')
+    const response = await fetch('http://localhost:8000/api/v1/users/logout' , {
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      credentials : "include"
+    })
+    .then(response => response.json())
+    .catch(error => console.log("Error: ",error))
     setProgress(50)
-    setIsLoggedIn(false)
+    if (response && response.success){
+      localStorage.removeItem('avatar')
+      setIsLoggedIn(false)
+      props.setCredentials({email: "" , password : ""})
+      navigate(0);
+    }
+    else{
+      alert("Please try again!")
+    }
     setProgress(100)
-    props.setCredentials({email:"" , password: ""})
-    navigate(0)
+
   }
   return (
     <div className="dropdown">

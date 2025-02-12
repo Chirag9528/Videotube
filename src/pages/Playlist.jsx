@@ -38,8 +38,9 @@ function Playlist() {
         method : 'GET',
         headers : {
           'Content-Type' : 'application/json',
-          'Authorization' : localStorage.getItem('token')
-        }
+          // 'Authorization' : localStorage.getItem('token')
+        },
+        credentials : "include" // to allow your browser to send cookies to cross origin request
       })
       .then(response => response.json())
       .catch(error => console.log(error))
@@ -58,8 +59,9 @@ function Playlist() {
       method : 'POST' ,
       headers : {
         'Content-Type' : 'application/json',
-        'Authorization' : localStorage.getItem('token')
+        // 'Authorization' : localStorage.getItem('token')
       },
+      credentials : "include",
       body : JSON.stringify({name : playlistDetail.name , description : playlistDetail.description})
     })
     .then(response => response.json())
@@ -80,8 +82,9 @@ function Playlist() {
       method : 'PATCH',
       headers : {
         'Content-Type' : 'application/json',
-        'Authorization' : localStorage.getItem('token')
+        // 'Authorization' : localStorage.getItem('token')
       },
+      credentials : "include",
       body : JSON.stringify({name : editplaylistdetail.name , description : editplaylistdetail.description})
     })
     .then(response => response.json())

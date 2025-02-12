@@ -31,8 +31,9 @@ function Comments(props) {
             method: 'POST',
             headers : {
                 'Content-Type' : 'application/json',
-                'Authorization' : localStorage.getItem('token')
+                // 'Authorization' : localStorage.getItem('token')
             },
+            credentials : "include",
             body: JSON.stringify({message : content})
         })
         .then(response => response.json())

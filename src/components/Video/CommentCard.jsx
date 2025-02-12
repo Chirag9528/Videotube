@@ -22,8 +22,9 @@ function CommentCard(props) {
                 method : 'GET' ,
                 headers : {
                     'Content-Type' : 'application/json',
-                    'Authorization' : localStorage.getItem('token')
-                }
+                    // 'Authorization' : localStorage.getItem('token')
+                },
+                credentials : "include"
             })
             .then(response => response.json())
             .catch((error) => console.log(error))
@@ -43,8 +44,9 @@ function CommentCard(props) {
             method : "POST",
             headers : {
               'Content-Type' : 'application/json',
-              'Authorization' : localStorage.getItem('token')
-            }
+            //   'Authorization' : localStorage.getItem('token')
+            },
+            credentials : "include"
           })
           .then(response => response.json())
           
@@ -61,8 +63,9 @@ function CommentCard(props) {
             method : 'DELETE',
             headers : {
                 'Content-Type' : 'application/json',
-                'Authorization' : localStorage.getItem('token')
-            }
+                // 'Authorization' : localStorage.getItem('token')
+            },
+            credentials : "include"
         })
         .then(response => response.json())
         .catch(error => console.log(error))
@@ -76,8 +79,9 @@ function CommentCard(props) {
             method: 'PATCH',
             headers : {
                 'Content-Type' : 'application/json',
-                'Authorization' : localStorage.getItem('token')
+                // 'Authorization' : localStorage.getItem('token')
             },
+            credentials : "include",
             body : JSON.stringify({newmessage : message})
         })
         .then(response => response.json())

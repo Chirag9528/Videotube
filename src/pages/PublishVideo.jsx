@@ -20,8 +20,9 @@ function PublishVideo(){
                 method : "POST",
                 body : formData,
                 headers : {
-                    Authorization : localStorage.getItem('token')
-                }
+                    // Authorization : localStorage.getItem('token')
+                },
+                credentials : "include"
             });
 
             if (!response.ok){

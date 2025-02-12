@@ -30,8 +30,9 @@ function VideoBig() {
           method : "POST",
           headers : {
             'Content-Type' : 'application/json',
-            'Authorization' : localStorage.getItem('token')
-          }
+            // 'Authorization' : localStorage.getItem('token')
+          },
+          credentials : "include"
         })
         .then(response => response.json())
         
@@ -49,8 +50,9 @@ function VideoBig() {
           method : "POST",
           headers : {
             'Content-Type' : 'application/json',
-            'Authorization' : localStorage.getItem('token')
-          }
+            // 'Authorization' : localStorage.getItem('token')
+          },
+          credentials : "include"
         })
         .then(response => response.json())
         
@@ -70,8 +72,9 @@ function VideoBig() {
           method : "GET",
           headers : {
             'Content-Type' : 'application/json',
-            'Authorization' : localStorage.getItem('token')
-          }
+            // 'Authorization' : localStorage.getItem('token')
+          },
+          credentials : "include"
         })
         .then(response => response.json())
         .catch(error => console.log(error))
@@ -97,8 +100,9 @@ function VideoBig() {
               method : "GET",
               headers : {
                 'Content-Type' : 'application/json',
-                'Authorization' : localStorage.getItem('token')
-              }
+                // 'Authorization' : localStorage.getItem('token')
+              },
+              credentials : "include"
             })
             .then(response => response.json())
             
@@ -128,8 +132,9 @@ function VideoBig() {
           method : 'GET',
           headers : {
             'Content-Type' : 'application/json',
-            'Authorization' : localStorage.getItem('token')
-          }
+            // 'Authorization' : localStorage.getItem('token')
+          },
+          credentials : "include"
         })
         .then(response => response.json())
         .catch(error => console.log(error))
@@ -146,8 +151,9 @@ function VideoBig() {
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',
-          'Authorization' : localStorage.getItem('token')
-        }
+          // 'Authorization' : localStorage.getItem('token')
+        },
+        credentials : "include"
       })
       .then(response => response.json())
       .catch(error => console.log(error))
@@ -166,8 +172,9 @@ function VideoBig() {
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',
-          'Authorization' : localStorage.getItem('token')
-        }
+          // 'Authorization' : localStorage.getItem('token')
+        },
+        credentials : "include"
       })
       .then(response => response.json())
       .catch(error => console.log(error))

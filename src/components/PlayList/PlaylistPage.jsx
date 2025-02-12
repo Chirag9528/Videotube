@@ -18,8 +18,9 @@ function PlaylistPage() {
           method : 'PATCH',
           headers : {
             'Content-Type' : 'application/json',
-            'Authorization' : localStorage.getItem('token')
-          }
+            // 'Authorization' : localStorage.getItem('token')
+          },
+          credentials : "include"
         })
         .then(response => response.json())
         .catch(error => console.log(error))
@@ -56,8 +57,9 @@ function PlaylistPage() {
           method : 'GET',
           headers : {
             'Content-Type' : 'application/json',
-            'Authorization' : localStorage.getItem('token')
-          }
+            // 'Authorization' : localStorage.getItem('token')
+          },
+          credentials : "include"
         })
         .then(response => response.json())
         .catch(error => console.log(error))
@@ -74,8 +76,9 @@ function PlaylistPage() {
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',
-          'Authorization' : localStorage.getItem('token')
-        }
+          // 'Authorization' : localStorage.getItem('token')
+        },
+        credentials : "include"
       })
       .then(response => response.json())
       .catch(error => console.log(error))
@@ -95,8 +98,9 @@ function PlaylistPage() {
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',
-          'Authorization' : localStorage.getItem('token')
-        }
+          // 'Authorization' : localStorage.getItem('token')
+        },
+        credentials : "include"
       })
       .then(response => response.json())
       .catch(error => console.log(error))
@@ -116,8 +120,9 @@ function PlaylistPage() {
         method : 'DELETE',
         headers : {
           'Content-Type' : 'application/json',
-          'Authorization' : localStorage.getItem('token')
-        }
+          // 'Authorization' : localStorage.getItem('token')
+        },
+        credentials : "include"
       })
       .then(response => response.json())
       .catch(error => console.log(error))
@@ -141,8 +146,9 @@ function PlaylistPage() {
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',
-          'Authorization' : localStorage.getItem('token')
+          // 'Authorization' : localStorage.getItem('token')
         },
+        credentials : "include",
         body : JSON.stringify({name : editname , description : editdescription})
       })
       .then(response => response.json())

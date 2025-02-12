@@ -41,6 +41,7 @@ function Header(props) {
       headers : {
         'Content-Type' : 'application/json'
       },
+      credentials : "include", // will allow to send cookies to cross origin request
       body : JSON.stringify({email : credentials.email , password : credentials.password})
     }).then(response => response.json())
     .catch(error => console.log("Error: ",error));
@@ -48,7 +49,6 @@ function Header(props) {
     if (response && response.success){
       refClose.current.click()
       setIsLoggedIn(true)
-      localStorage.setItem('token',response.data.accessToken) 
       localStorage.setItem('avatar' , response.data.user.avatar)
       navigate(0) // to refresh the page
     }
@@ -59,9 +59,23 @@ function Header(props) {
   }
   
   useEffect(()=>{
-    if (localStorage.getItem('token')){
-      setIsLoggedIn(true)
+    const checkauthentication = async ()=>{
+      const response = await fetch('http://localhost:8000/api/v1/users/verifytoken',{
+        method : 'GET',
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+        credentials : "include"
+      })
+      .then(response => response.json())
+      .catch(error => console.log("Error: ",error))
+
+      if (response && response.success){
+        setIsLoggedIn(true);
+      }
     }
+    checkauthentication()
+
   },[setIsLoggedIn])
 
   const registerhandle = () => {
