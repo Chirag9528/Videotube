@@ -167,8 +167,8 @@ function PlaylistPage() {
   return (
     <>
     <div style={{color : "white" , width : "83vw" , display : "flex" , height : "90vh"}}>
-      <div className="card" style={{width: "27vw" , height : "89vh" , textAlign:"left" , backgroundColor:"rgb(0,0,0)" , color : "white"}}>
-        <img src={'http://res.cloudinary.com/harharmahadev/image/upload/v1736842158/yc6ppc1nwxb8tpsz4ebu.jpg'} style={{borderRadius : "10px"}}/>
+      <div className="card" style={{ width: "27vw" , height : "89vh" , textAlign:"left" , backgroundColor:"rgb(0,0,0)" , color : "white"}}>
+        <img src={'https://res.cloudinary.com/harharmahadev/image/upload/v1739379626/bk6mx7jozcwc1r2nupqw.jpg'} style={{borderRadius : "10px"}}/>
         <div style={{display : "flex"}}>
           <div className="card-title px-2 my-2" style={{flex : "10" , fontSize : "1.5rem"}}>{playlist?.name || ""}</div>
           <div style={{display : "flex" , justifyContent : "center" , alignItems : "center"}}>

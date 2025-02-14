@@ -2,7 +2,7 @@ import React , {useState , useRef, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
 
-function Video(props) {
+function Dashvideocard(props) {
   const navigate = useNavigate()
 
   const {setProgress} = useContext(LoadingBarContext)
@@ -22,13 +22,10 @@ function Video(props) {
         />
         <div className="card-body p-0 my-2">
           <div className="row g-0">
-            <div className="col-md-2" style={{display : "flex" , justifyContent : "center"}}>
-              <img src={props.obj.avatar} className="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} alt="..."/>
-            </div>
             <div className="col-md-10">
               <div className="">
-                <p className="card-text m-0 px-2 text-start">{props.obj.title.length > 30 ? props.obj.title.slice(0,30) + "..." : props.obj.title}</p>
-                <p className="card-text px-2 text-start" style={{color: "rgb(169 , 169 , 169)"}}>{props.obj.ownername}</p>
+                <p className="card-text m-0 px-2 text-start">{props.obj.title.length > 22 ? props.obj.title.slice(0,22) + "..." : props.obj.title}</p>
+                <p className='card-text px-2 text-start' style={{color:"rgb(169,169,169)"}}>{props.obj.views} views</p>
               </div>
             </div>
         </div>
@@ -37,4 +34,4 @@ function Video(props) {
   )
 }
 
-export default Video
+export default Dashvideocard

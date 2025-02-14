@@ -51,7 +51,7 @@ function PlayListCard(props) {
       <div style={{ position: 'absolute', top: '10px', left: '0px'}}>
         <div className="card m p-0" style={{height:"310px" , width : "350px" , color :"white",background: "rgb(0,0,0)" }}>
           <img
-          src={'http://res.cloudinary.com/harharmahadev/image/upload/v1736842158/yc6ppc1nwxb8tpsz4ebu.jpg'}
+          src={'https://res.cloudinary.com/harharmahadev/image/upload/v1739379626/bk6mx7jozcwc1r2nupqw.jpg'}
           alt="Video Thumbnail"
           style={{borderRadius: "15px"}}
           width="350px"

@@ -15,6 +15,10 @@ import { VideoBig } from './components/index.jsx'
 import PlaylistPage from './components/PlayList/PlaylistPage.jsx'
 import SearchResultPage from './pages/SearchResultPage.jsx'
 import LoadingBarContextProvider from './components/contexts/LoadingBar/LoadingBarProvider.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import DashboardVideoPage from './components/Dashboard/DashboardVideoPage.jsx'
+import DashboardPlaylistPage from './components/Dashboard/DashboardPlaylistPage.jsx'
+import DashboardTweetPage from './components/Dashboard/DashboardTweetPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -56,6 +60,24 @@ const router = createBrowserRouter([
         {
           path : "/searchresult",
           element: <SearchResultPage/>
+        },
+        {
+          path : "/dashboard",
+          element: <Dashboard/>,
+          children : [
+            {
+              path: "/dashboard/videos",
+              element : <DashboardVideoPage/>
+            },
+            {
+              path : "/dashboard/playlists",
+              element : <DashboardPlaylistPage/>
+            },
+            {
+              path : "/dashboard/tweets",
+              element : <DashboardTweetPage/>
+            }
+          ]
         }
     ],
 },

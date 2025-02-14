@@ -1,5 +1,6 @@
-import React , {useState} from 'react'
+import React , {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar'
 
 function PublishVideo(){
     const [videocredentials , setVideoCredentials] = useState({title : "" , description : "" , videoFile : null , thumbnail : null})
@@ -7,15 +8,20 @@ function PublishVideo(){
     const OnChange = (e)=>{
         setVideoCredentials({...videocredentials , [e.target.name] : e.target.value})
     }
+
+    const {setProgress} = useContext(LoadingBarContext)
+
     const publish = async (e)=>{
         e.preventDefault();
         try {
+            setProgress(10)
             const formData = new FormData();
             formData.append("title", videocredentials.title);
             formData.append("description", videocredentials.description);
             formData.append("videoFile", videocredentials.videoFile);
             formData.append("thumbnail", videocredentials.thumbnail);
 
+            setProgress(30)
             const response = await fetch( "http://localhost:8000/api/v1/videos" , {
                 method : "POST",
                 body : formData,
@@ -24,6 +30,7 @@ function PublishVideo(){
                 },
                 credentials : "include"
             });
+            setProgress(80)
 
             if (!response.ok){
                 console.error("Error:", response.status, response.statusText);
@@ -31,6 +38,7 @@ function PublishVideo(){
                 return;
             }
             const json = await response.json();
+            setProgress(90)
             if (json.success) {
                 alert("Published Video Successfully!");
                 navigate("/")
@@ -38,11 +46,13 @@ function PublishVideo(){
                 alert(json.message || "Some Error Occurred! Try Again!!!");
             }
             console.log(json)
+            
 
         } catch (error) {
             console.log("Error during publishing video")
             alert("An Error Occurred while Publishing Video. Please Try Again!!!")
         }
+        setProgress(100)
     }   
     return (
     <div style={{color : "white" ,width:"85vw" , height:"88vh" ,display:"flex" , justifyContent:"center" , alignItems:"center"}}>

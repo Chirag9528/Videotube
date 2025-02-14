@@ -33,7 +33,11 @@ function Home() {
         <div className="row row-cols-1 row-cols-md-3 g-4" style={{display : "flex"}}>
           {
             allvideos.map((video)=>{
-              return <Video key = {video._id} obj = {video}/>;
+              return (
+                <div key={video._id} className="card ms-4 p-0" style={{height:"317px" , width : "375px" , backgroundColor: "rgb(0,0,0)"}}> 
+                  <Video obj = {video}/>;
+                </div>
+              )
             })
           }
         </div>

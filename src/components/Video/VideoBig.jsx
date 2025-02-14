@@ -24,6 +24,7 @@ function VideoBig() {
 
     const {isOpen} = useContext(MenuContext)
 
+
     const togglesubscription = async ()=>{
       try {
         const response = await fetch( `http://localhost:8000/api/v1/subscriptions/c/${obj.owner}` , {
@@ -187,7 +188,12 @@ function VideoBig() {
         alert("Try Again")
       }
     }
-    
+
+
+    const showdashboard = ()=>{
+      localStorage.setItem('name' , obj.ownername) // Need to fix as while going back to dashboard after playing some video there , i am getting name as undefined
+      navigate("/dashboard" , {state : {name : obj.ownername}})
+    }
 
     return (
     <>
@@ -203,11 +209,11 @@ function VideoBig() {
         <div className="card-body p-0 my-2" style={{display:"flex" , flexDirection:"column"}}>
           <h4 className="card-text m-2 px-2 text-start">{obj.title}</h4>
           <div className="row g-0 my-2" style={{}}>
-            <div className="col-md-1 px-4" style={{"display" : "flex" , justifyContent : "left"}}>
+            <div className="col-md-1 px-4" onClick={showdashboard} style={{cursor : "pointer" , "display" : "flex" , justifyContent : "left"}}>
               <img src={obj.avatar} className="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} width="60px" alt="..."/>
             </div>
             <div className="col-md-8" style={{display:"flex" , alignItems:"center"}}>
-              <div className="" style={{ display : "flex"}}>
+              <div className="" style={{ display : "flex" , cursor :"pointer"}} onClick={showdashboard}>
                 <p className="card-text text-start" style={{color: "rgb(169 , 169 , 169)" , paddingLeft:"10px" , paddingRight:"40px"}}>{obj.ownername}</p>
               </div>
               <div className="" style={{}}>
