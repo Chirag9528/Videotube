@@ -19,6 +19,11 @@ import Dashboard from './pages/Dashboard.jsx'
 import DashboardVideoPage from './components/Dashboard/DashboardVideoPage.jsx'
 import DashboardPlaylistPage from './components/Dashboard/DashboardPlaylistPage.jsx'
 import DashboardTweetPage from './components/Dashboard/DashboardTweetPage.jsx'
+import Settings from './pages/Settings.jsx'
+import ChangePassword from './components/Settings/ChangePassword.jsx'
+import UpdateCoverImage from './components/Settings/UpdateCoverImage.jsx'
+import UpdateAvatar from './components/Settings/UpdateAvatar.jsx'
+import UpdateAccDetails from './components/Settings/UpdateAccDetails.jsx'
 
 const router = createBrowserRouter([
   {
@@ -76,6 +81,28 @@ const router = createBrowserRouter([
             {
               path : "/dashboard/tweets",
               element : <DashboardTweetPage/>
+            }
+          ]
+        },
+        {
+          path : "/settings",
+          element: <Settings/>,
+          children : [
+            {
+              path : "/settings/changepassword",
+              element: <ChangePassword/>
+            },
+            {
+              path : "/settings/updatecoverimage",
+              element: <UpdateCoverImage/>
+            },
+            {
+              path: "/settings/updateavatar",
+              element: <UpdateAvatar/>
+            },
+            {
+              path: "/settings/updateaccountdetails",
+              element: <UpdateAccDetails/>
             }
           ]
         }

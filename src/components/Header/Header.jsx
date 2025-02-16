@@ -188,30 +188,30 @@ function Header(props) {
         </button>
         <div className="modal fade" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-            <div className="modal-header">
-                <h1 className="modal-title fs-5" id="loginModalLabel">VideoTube</h1>
-                <button type="button" ref={refClose} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-                <form>
-                  <div className="row mb-3">
-                    <label htmlFor="inputEmail" className="col-sm-2 col-form-label">Email</label>
-                      <div className="col-sm-10">
-                      <input type="email" value={credentials.email} onChange={OnChange} name="email" className="form-control" id="inputEmail"/>
-                      </div>
-                  </div>
-                  <div className="row mb-3">
-                    <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Password</label>
-                      <div className="col-sm-10">
-                      <input type="password" value={credentials.password} onChange={OnChange} name="password" className="form-control" id="inputPassword"/>
-                      </div>
-                  </div>
-                </form>
-            </div>
-            <div className="modal-footer">
-                <button type="button" className="btn btn-primary" onClick={dologin}>Login</button>
-            </div>
+            <div className="modal-content" style={{backgroundColor : "black" , color : "white" , borderColor: "white"}}>
+              <div className="modal-header">
+                  <h1 className="modal-title fs-5" id="loginModalLabel">VideoTube</h1>
+                  <button type="button" ref={refClose} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                  <form>
+                    <div className="row mb-3">
+                      <label htmlFor="inputEmail" className="col-sm-2 col-form-label">Email</label>
+                        <div className="col-sm-10">
+                        <input type="email" value={credentials.email} onChange={OnChange} name="email" className="form-control" id="inputEmail" style={{backgroundColor : "black" , color:"white"}}/>
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                      <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Password</label>
+                        <div className="col-sm-10">
+                        <input type="password" value={credentials.password} onChange={OnChange} name="password" className="form-control" id="inputPassword" style={{backgroundColor : "black" , color:"white"}}/>
+                        </div>
+                    </div>
+                  </form>
+              </div>
+              <div className="modal-footer">
+                  <button type="button" className="btn btn-primary" onClick={dologin}>Login</button>
+              </div>
             </div>
         </div>
         </div>
@@ -224,7 +224,7 @@ function Header(props) {
         </button>
         <div className="modal fade" id="registerModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg modal-dialog-centered">
-            <div className="modal-content">
+            <div className="modal-content" style={{backgroundColor : "black" , color : "white" , borderColor: "white"}}>
             <div className="modal-header">
                 <h1 className="modal-title fs-5" id="exampleModalLabel">VideoTube</h1>
                 <button type="button" ref={registerrefClose} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -234,43 +234,43 @@ function Header(props) {
                   <div className="row mb-3">
                     <label htmlFor="FullName" className="col-sm-2 col-form-label">Fullname</label>
                       <div className="col-sm-10">
-                      <input type="text" value={registercredentials.fullName} onChange={OnChangeRegister} name="fullName" className="form-control" id="FullName"/>
+                      <input type="text" value={registercredentials.fullName} onChange={OnChangeRegister} name="fullName" className="form-control" id="FullName" style={{backgroundColor : "black" , color:"white"}}/>
                       </div>
                   </div>
                   <div className="row mb-3">
                     <label htmlFor="UserName" className="col-sm-2 col-form-label">Username</label>
                       <div className="col-sm-10">
-                      <input type="text" value={registercredentials.username} onChange={OnChangeRegister} name="username" className="form-control" id="UserName"/>
+                      <input type="text" value={registercredentials.username} onChange={OnChangeRegister} name="username" className="form-control" id="UserName" style={{backgroundColor : "black" , color:"white"}}/>
                       </div>
                   </div>
                   <div className="row mb-3">
                     <label htmlFor="avatar" className="col-sm-2 col-form-label">Avatar</label>
                       <div className="col-sm-10">
-                      <input type="file"  onChange={(e) => setRegisterCredentials({ ...registercredentials,avatar: e.target.files[0]})} name="avatar" className="form-control" id="avatar"/>
+                      <input type="file"  onChange={(e) => setRegisterCredentials({ ...registercredentials,avatar: e.target.files[0]})} name="avatar" className="form-control" id="avatar" style={{backgroundColor : "black" , color:"white"}}/>
                       </div>
                   </div>
                   <div className="row mb-3">
                     <label htmlFor="coverimage" className="col-sm-2 col-form-label">CoverImage</label>
                       <div className="col-sm-10">
-                      <input type="file" onChange={(e) => setRegisterCredentials({ ...registercredentials,coverImage: e.target.files[0]})} name="coverImage" className="form-control" id="coverimage"/>
+                      <input type="file" onChange={(e) => setRegisterCredentials({ ...registercredentials,coverImage: e.target.files[0]})} name="coverImage" className="form-control" id="coverimage" style={{backgroundColor : "black" , color:"white"}}/>
                       </div>
                   </div>
                   <div className="row mb-3">
                     <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
                       <div className="col-sm-10">
-                      <input type="email" value={registercredentials.email} onChange={OnChangeRegister} name="email" className="form-control" id="inputEmail3"/>
+                      <input type="email" value={registercredentials.email} onChange={OnChangeRegister} name="email" className="form-control" id="inputEmail3" style={{backgroundColor : "black" , color:"white"}}/>
                       </div>
                   </div>
                   <div className="row mb-3">
                     <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
                       <div className="col-sm-10">
-                      <input type="password" value={registercredentials.password} onChange={OnChangeRegister} name="password" className="form-control" id="inputPassword3"/>
+                      <input type="password" value={registercredentials.password} onChange={OnChangeRegister} name="password" className="form-control" id="inputPassword3" style={{backgroundColor : "black" , color:"white"}}/>
                       </div>
                   </div>
                   <div className="row mb-3">
                     <label htmlFor="confirmPassword" className="col-sm-2 col-form-label">Confirm Password</label>
                       <div className="col-sm-10">
-                      <input type="password" value={registercredentials.confirmpassword} onChange={OnChangeRegister} name="confirmpassword" className="form-control" id="confirmPassword"/>
+                      <input type="password" value={registercredentials.confirmpassword} onChange={OnChangeRegister} name="confirmpassword" className="form-control" id="confirmPassword" style={{backgroundColor : "black" , color:"white"}}/>
                       </div>
                   </div>
                 </form>

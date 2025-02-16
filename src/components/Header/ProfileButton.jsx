@@ -34,6 +34,23 @@ function ProfileButton(props){
     setProgress(100)
 
   }
+
+  const updateaccountdetails = ()=>{
+    navigate("/settings/updateaccountdetails")
+  }
+
+  const changepassword = ()=>{
+    navigate("/settings/changepassword")
+  }
+
+  const updateavatar = ()=>{
+    navigate("/settings/updateavatar")
+  }
+
+  const updatecoverimage = ()=>{
+    navigate("/settings/updatecoverimage")
+  }
+
   return (
     <div className="dropdown">
       <button
@@ -57,30 +74,32 @@ function ProfileButton(props){
       </button>
       <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
         <li>
-          <a className="dropdown-item" href="#">
+          <button className="dropdown-item" onClick={updateaccountdetails}>
             Update Account Details
-          </a>
+          </button>
         </li>
         <li>
-          <a className="dropdown-item" href="#">
+          <button className="dropdown-item" onClick={updateavatar}>
             Update Avatar
-          </a>
+          </button>
         </li>
         <li>
-          <a className="dropdown-item" href="#">
+          <button className="dropdown-item" onClick={updatecoverimage}>
             Update CoverImage
-          </a>
+          </button>
         </li>
         <li>
-          <a className="dropdown-item" href="#">
+          <button className="dropdown-item" onClick={changepassword}>
             Change Password
-          </a>
+          </button>
         </li>
         <li>
           <hr className="dropdown-divider" />
         </li>
         <li>
-          <button className="dropdown-item" onClick={logout}>Logout</button>
+          <button className="dropdown-item" onClick={logout}>
+            Logout
+          </button>
         </li>
       </ul>
     </div>
