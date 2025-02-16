@@ -20,7 +20,7 @@ function VideoBig() {
     const videoRef = useRef(null)
     useEffect(()=>{
         videoRef.current.play()
-    })
+    },[])
 
     const {isOpen} = useContext(MenuContext)
 
@@ -64,6 +64,41 @@ function VideoBig() {
         console.log("Error: ",error)
       }
     }
+
+    const hasRun1 = useRef(false)
+
+    useEffect(()=>{
+      if (!hasRun1.current){
+        hasRun1.current = true;
+        const updateview = async ()=>{
+          const response = await fetch(`http://localhost:8000/api/v1/videos/update-views/${obj._id}`,{
+            method : 'GET',
+            credentials : "include"
+          })
+          .then(response => response.json())
+          .catch(error => console.log(error));
+          
+        }
+        updateview();
+      }
+    },[])
+
+    const hasRun2 = useRef(false)
+    useEffect(()=>{
+      if (!hasRun2.current){
+        hasRun2.current = true;
+        const updatewatchHistory = async ()=>{
+          const response = await fetch(`http://localhost:8000/api/v1/users/update-watchHistory/${obj._id}`,
+            {
+              method: 'GET',
+              credentials : "include"
+            })
+            .then(response => response.json())
+            .catch(error=>console.log(error));
+        }
+        updatewatchHistory();
+      }
+    },[])
 
     useEffect(()=>{
       const checksubscription = async () => {

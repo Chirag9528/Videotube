@@ -111,7 +111,7 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <React.StrictMode> 
     <AuthContextProvider>
       <MenuContextProvider>
         <LoadingBarContextProvider>
@@ -121,3 +121,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </AuthContextProvider>
   </React.StrictMode>,
 )
+// When using StrictMode, React intentionally mounts components twice (only in development mode) to detect potential side effects.
+// This means useEffect runs twice, even though you provided an empty dependency array ([]).

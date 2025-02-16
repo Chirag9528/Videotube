@@ -55,38 +55,50 @@ function PublishVideo(){
         setProgress(100)
     }   
     return (
-    <div style={{color : "white" ,width:"85vw" , height:"88vh" ,display:"flex" , justifyContent:"center" , alignItems:"center"}}>
-      <form style={{ borderRadius : "30px" , backgroundColor:"rgb(159,159,159)"}} className='p-4' onSubmit={publish}>
-            <h1 className='m-4'>Video Upload Pannel</h1>
-            <div className="row mb-3" style={{display : "flex"}}>
-            <label htmlFor="videotitle" className="col-sm-2 col-form-label" style={{flex : 2}}>Title :</label>
-                <div className="col-sm-10" style={{flex : 5}}>
-                <input type="text" name="title" onChange={OnChange} value={videocredentials.title} className="form-control" id="videotitle"/>
+
+    <>
+    <div className='mt-4 ms-4' style={{color : "white" , height : "87vh" , width : "84vw"}}>
+        <h1 className='mb-3 ms-2' style={{flex : "10", textAlign : "left" , paddingLeft : "10px" , color :"white"}}>VideoStudio</h1>
+        <div className="" style={{}}>
+            <div style={{color : "white" , display : "flex" , flexDirection:"column" , justifyContent : "center" , alignItems : "center"}}>
+                <div className="card mt-4" style={{backgroundColor : "black" , color :"white" , width:"40vw" , border:"2px solid white"}} >
+                    <h3 className='mt-2 mb-4'>Video Upload Pannel</h3>
+                    <form onSubmit={publish}  style={{display : "flex" , flexDirection:"column" , justifyContent : "center" , alignContent:"center"}}>
+                        <div className="row m-3" style={{}}>
+                            <label htmlFor="videotitle" className="col-sm-4 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>Title</label>
+                            <div className="col-sm-8">
+                            <input type="text" name="title" onChange={OnChange} value={videocredentials.title} className="form-control" id="videotitle"/>
+                            </div>
+                        </div>
+                        <div className="row m-3" style={{}}>
+                            <label htmlFor="videodesc" className="col-sm-4 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>Description</label>
+                            <div className="col-sm-8">
+                            <input type="text" name="description" onChange={OnChange} value={videocredentials.description} className="form-control" id="videodesc"/>
+                            </div>
+                        </div>
+                        <div className="row m-3" style={{}}>
+                            <label htmlFor="videofile" className="col-sm-4 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>VideoFile</label>
+                            <div className="col-sm-8">
+                            <input type="file" name="videoFile" onChange={(e) => setVideoCredentials({ ...videocredentials,videoFile: e.target.files[0]})}  className="form-control" id="videofile"/>
+                            </div>
+                        </div>
+                        <div className="row m-3" style={{}}>
+                            <label htmlFor="videothumbnail" className="col-sm-4 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>Thumbnail</label>
+                            <div className="col-sm-8">
+                            <input type="file" name="thumbnail" onChange={(e) => setVideoCredentials({ ...videocredentials,thumbnail: e.target.files[0]})} className="form-control" id="videothumbnail"/>
+                            </div>
+                        </div>
+                        <div className='row m-3' style={{display : "flex" , justifyContent:"center" , alignItems : "center"}}>
+                            <button type='submit' className='btn btn-secondary' style={{width:"8vw"}}>
+                                Upload
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div className="row mb-3" style={{display : "flex"}}>
-            <label htmlFor="videodesc" className="col-sm-2 col-form-label" style={{flex : 2}}>Description :</label>
-                <div className="col-sm-10" style={{flex : 5}}>
-                <input type="text" name="description" onChange={OnChange} value={videocredentials.description} className="form-control" id="videodesc"/>
-                </div>
-            </div>
-            <div className="row mb-3" style={{display : "flex"}}>
-            <label htmlFor="videofile" className="col-sm-2 col-form-label" style={{flex: 2}}>VideoFile : </label>
-                <div className="col-sm-10" style={{flex : 5}}>
-                <input type="file"  name="videoFile" onChange={(e) => setVideoCredentials({ ...videocredentials,videoFile: e.target.files[0]})} className="form-control" id="videofile"/>
-                </div>
-            </div>
-            <div className="row mb-3" style={{display : "flex"}}>
-            <label htmlFor="videothumbnail" className="col-sm-2 col-form-label" style={{flex : 2}}>Thumbnail :</label>
-                <div className="col-sm-10" style={{flex : 5}}>
-                <input type="file" name="thumbnail" onChange={(e) => setVideoCredentials({ ...videocredentials,thumbnail: e.target.files[0]})} className="form-control" id="videothumbnail"/>
-                </div>
-            </div>
-            <div className="col-12">
-                <button type="submit" className="btn btn-primary">Upload</button>
-            </div>
-        </form>
+        </div>
     </div>
+    </>
   )
 }
 

@@ -10,7 +10,7 @@ function Home() {
   useEffect(()=>{
     const fetchData = async()=>{
       setProgress(20)
-      const response = await fetch('http://localhost:8000/api/v1/videos/all/?page=1&limit=10&sortBy=title&sortType=asc&query=', {
+      const response = await fetch('http://localhost:8000/api/v1/videos/all/?page=1&limit=20&sortBy=title&sortType=asc&query=', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

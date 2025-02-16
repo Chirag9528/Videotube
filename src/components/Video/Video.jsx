@@ -17,18 +17,19 @@ function Video(props) {
           src={props.obj.thumbnail}
           alt="Video Thumbnail"
           style={{borderRadius: "15px"}}
-          width={props.imgdim? props.imgdim.width : "370px"}
-          height={props.imgdim ? props.imgdim.height : "250px"}
+          width={props.imgdim? props.imgdim.width : "350px"}
+          height={props.imgdim ? props.imgdim.height : "230px"}
         />
         <div className="card-body p-0 my-2">
-          <div className="row g-0">
-            <div className="col-md-2" style={{display : "flex" , justifyContent : "center"}}>
+          <div className="row g-0" style={{}}>
+            <div className="col-md-2" style={{display : "flex" , justifyContent : "center" , alignItems : "center"}}>
               <img src={props.obj.avatar} className="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} alt="..."/>
             </div>
-            <div className="col-md-10">
-              <div className="">
-                <p className="card-text m-0 px-2 text-start">{props.obj.title.length > 30 ? props.obj.title.slice(0,30) + "..." : props.obj.title}</p>
-                <p className="card-text px-2 text-start" style={{color: "rgb(169 , 169 , 169)"}}>{props.obj.ownername}</p>
+            <div className="col-md-10" style={{}}>
+              <div className="" style={{}}>
+                <p className="card-text m-0 px-2 text-start" style={{}}>{props.obj.title.length > 30 ? props.obj.title.slice(0,30) + "..." : props.obj.title}</p>
+                <p className="card-text m-0 px-2 text-start" style={{fontSize: "0.9rem" , color: "rgb(169 , 169 , 169)"}}>{props.obj.ownername}</p>
+                <p className='card-text px-2 text-start' style={{fontSize:"0.9rem", color:"rgb(169,169,169)"}}>{props.obj.views} views </p>
               </div>
             </div>
         </div>

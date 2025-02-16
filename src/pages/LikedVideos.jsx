@@ -35,7 +35,7 @@ function LikedVideos(){
             likedvideos.map((video)=>{
               delete video._id
               const newdetail = {...video , ["_id"] : video.videoid}
-              return (<div className="card ms-4 p-0" key={newdetail._id} style={{height:"317px" , width : "375px" , backgroundColor: "rgb(0,0,0)"}}> 
+              return (<div className="card ms-3 p-0" key={newdetail._id} style={{height:"317px" , width : "375px" , backgroundColor: "rgb(0,0,0)"}}> 
                   <Video obj = {newdetail}/>;
               </div>)
             })
