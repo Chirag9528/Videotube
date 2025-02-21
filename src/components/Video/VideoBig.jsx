@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { BiLike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
-import MenuContext from '../contexts/MenuButton/MenuContext';
+import MenuContext from '../../contexts/MenuButton/MenuContext';
 import Comments from './Comments';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BsThreeDotsVertical } from "react-icons/bs";
-import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
+import LoadingBarContext from '../../contexts/LoadingBar/LoadingBar';
 
 
 function VideoBig() {
@@ -27,7 +27,7 @@ function VideoBig() {
 
     const togglesubscription = async ()=>{
       try {
-        const response = await fetch( `http://localhost:8000/api/v1/subscriptions/c/${obj.owner}` , {
+        const response = await fetch( `${import.meta.env.VITE_HOSTNAME}/api/v1/subscriptions/c/${obj.owner}` , {
           method : "POST",
           headers : {
             'Content-Type' : 'application/json',
@@ -47,7 +47,7 @@ function VideoBig() {
 
     const togglelike = async ()=>{
       try {
-        const response = await fetch( `http://localhost:8000/api/v1/likes/toggle/v/${obj._id}` , {
+        const response = await fetch( `${import.meta.env.VITE_HOSTNAME}/api/v1/likes/toggle/v/${obj._id}` , {
           method : "POST",
           headers : {
             'Content-Type' : 'application/json',
@@ -71,7 +71,7 @@ function VideoBig() {
       if (!hasRun1.current){
         hasRun1.current = true;
         const updateview = async ()=>{
-          const response = await fetch(`http://localhost:8000/api/v1/videos/update-views/${obj._id}`,{
+          const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/videos/update-views/${obj._id}`,{
             method : 'GET',
             credentials : "include"
           })
@@ -88,7 +88,7 @@ function VideoBig() {
       if (!hasRun2.current){
         hasRun2.current = true;
         const updatewatchHistory = async ()=>{
-          const response = await fetch(`http://localhost:8000/api/v1/users/update-watchHistory/${obj._id}`,
+          const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/update-watchHistory/${obj._id}`,
             {
               method: 'GET',
               credentials : "include"
@@ -104,7 +104,7 @@ function VideoBig() {
       const checksubscription = async () => {
         
         setProgress(20)
-        const response = await fetch( `http://localhost:8000/api/v1/subscriptions/check/${obj.owner}` , {
+        const response = await fetch( `${import.meta.env.VITE_HOSTNAME}/api/v1/subscriptions/check/${obj.owner}` , {
           method : "GET",
           headers : {
             'Content-Type' : 'application/json',
@@ -132,7 +132,7 @@ function VideoBig() {
       const checkLiked = async () => {
         try {
             console.log("obj::::" , obj._id)
-            const response = await fetch( `http://localhost:8000/api/v1/likes/checklike/v/${obj._id}` , {
+            const response = await fetch( `${import.meta.env.VITE_HOSTNAME}/api/v1/likes/checklike/v/${obj._id}` , {
               method : "GET",
               headers : {
                 'Content-Type' : 'application/json',
@@ -164,7 +164,7 @@ function VideoBig() {
 
     useEffect(()=>{
       const fetchallplaylists = async ()=>{
-        const response = await fetch('http://localhost:8000/api/v1/playlist/user/playlists',{
+        const response = await fetch('${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/user/playlists',{
           method : 'GET',
           headers : {
             'Content-Type' : 'application/json',
@@ -183,7 +183,7 @@ function VideoBig() {
     },[])
 
     const addtoplaylist = async (videoId , playlistId)=>{
-      const response = await fetch(`http://localhost:8000/api/v1/playlist/add/${videoId}/${playlistId}`,{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/add/${videoId}/${playlistId}`,{
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',
@@ -204,7 +204,7 @@ function VideoBig() {
     }
 
     const deletefromplaylist = async(videoId , playlistId)=>{
-      const response = await fetch(`http://localhost:8000/api/v1/playlist/remove/${videoId}/${playlistId}`,{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/remove/${videoId}/${playlistId}`,{
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',

@@ -1,7 +1,7 @@
 import React , {useState , useRef, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { BsThreeDotsVertical } from "react-icons/bs";
-import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
+import LoadingBarContext from '../../contexts/LoadingBar/LoadingBar';
 
 function PlayListCard(props) {
   const playlistname = props.playlist.name
@@ -17,7 +17,7 @@ function PlayListCard(props) {
   }
 
   const deleteplaylist = async ()=>{
-    const response = await fetch(`http://localhost:8000/api/v1/playlist/${props.playlist._id}`,{
+    const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/${props.playlist._id}`,{
       method : 'DELETE',
       headers : {
         'Content-Type' : 'application/json',

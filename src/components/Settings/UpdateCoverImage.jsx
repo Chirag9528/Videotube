@@ -11,7 +11,7 @@ function UpdateCoverImage(){
     if (updatedcoverImage){
       formData.append('coverImage' , updatedcoverImage)
 
-      const response = await fetch('http://localhost:8000/api/v1/users/cover-image',{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/cover-image`,{
         method : 'PATCH',
         body : formData,
         credentials : "include"

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Video from '../components/Video/Video'
-import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar'
+import {Video} from "../components/index.jsx"
+import {LoadingBarContext} from '../contexts/index.jsx'
 
 function Home() {
 
@@ -10,7 +10,7 @@ function Home() {
   useEffect(()=>{
     const fetchData = async()=>{
       setProgress(20)
-      const response = await fetch('http://localhost:8000/api/v1/videos/all/?page=1&limit=20&sortBy=title&sortType=asc&query=', {
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/videos/all/?page=1&limit=20&sortBy=title&sortType=asc&query=`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

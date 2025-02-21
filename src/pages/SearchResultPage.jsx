@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import ResultVideoCard from '../components/SearchResult/ResultVideoCard'
+import {ResultVideoCard} from '../components/index.jsx'
 import { color } from 'framer-motion'
-import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar'
+import {LoadingBarContext} from '../contexts/index.jsx'
 
 function SearchResultPage(){
     const location = useLocation()
@@ -15,7 +15,7 @@ function SearchResultPage(){
     useEffect(()=>{
         const fetchsearchedvideos = async ()=>{
             setProgress(30)
-            const response = await fetch(`http://localhost:8000/api/v1/videos/all/?page=1&limit=10&sortBy=title&sortType=asc&query=${query}`,{
+            const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/videos/all/?page=1&limit=10&sortBy=title&sortType=asc&query=${query}`,{
                 method : "GET",
                 headers : {
                     'Content-Type' : 'application/json',

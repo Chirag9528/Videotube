@@ -6,7 +6,7 @@ function UpdateAccDetails(){
     const updateDetails = async (e)=>{
         e.preventDefault()
         try {
-            const response = await fetch('http://localhost:8000/api/v1/users/update-account',{
+            const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/update-account`,{
                 method : 'PATCH',
                 headers : {
                     'Content-Type' : 'application/json'
@@ -26,7 +26,7 @@ function UpdateAccDetails(){
     useEffect(()=>{
         const fetchuser = async ()=> {
             try {
-                const response = await fetch('http://localhost:8000/api/v1/users/current-user',{
+                const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/current-user`,{
                     method : "GET" ,
                     headers : {
                         'Content-Type' : 'application/json'

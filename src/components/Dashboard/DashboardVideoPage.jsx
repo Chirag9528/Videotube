@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import LoadingBarContext from '../contexts/LoadingBar/LoadingBar'
-import Video from '../Video/Video'
+import {LoadingBarContext} from '../../contexts/index.jsx'
 import Dashvideocard from './Dashvideocard'
 
 function DashboardVideoPage(){
@@ -14,7 +13,7 @@ function DashboardVideoPage(){
   useEffect(()=>{
     const fetchData = async()=>{
       setProgress(20)
-      const response = await fetch(`http://localhost:8000/api/v1/videos/?page=1&limit=10&sortBy=title&sortType=asc&query=&userId=${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/videos/?page=1&limit=10&sortBy=title&sortType=asc&query=&userId=${userId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

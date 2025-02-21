@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar'
+import {LoadingBarContext} from '../contexts/index.jsx'
 
 function Dashboard(){
     const [dashboard , setDashboard] = useState({})
@@ -14,7 +14,7 @@ function Dashboard(){
     useEffect(()=>{
         const getdashboard = async ()=>{
             try {
-                const response = await fetch(`http://localhost:8000/api/v1/users/c/${localStorage.getItem('name')}` , {
+                const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/c/${localStorage.getItem('name')}` , {
                     method : 'GET',
                     headers : {
                         'Content-Type' : 'application/json'
@@ -57,7 +57,7 @@ function Dashboard(){
 
     const togglesubscription = async ()=>{
         try {
-          const response = await fetch( `http://localhost:8000/api/v1/subscriptions/c/${dashboard._id}` , {
+          const response = await fetch( `${import.meta.env.VITE_HOSTNAME}/api/v1/subscriptions/c/${dashboard._id}` , {
             method : "POST",
             headers : {
               'Content-Type' : 'application/json',

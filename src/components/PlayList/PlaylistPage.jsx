@@ -14,7 +14,7 @@ function PlaylistPage() {
     const deletevideo = async ()=>{
         console.log(deletevideoid)
         console.log(playlist._id)
-        const response = await fetch(`http://localhost:8000/api/v1/playlist/remove/${deletevideoid}/${playlist._id}` , {
+        const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/remove/${deletevideoid}/${playlist._id}` , {
           method : 'PATCH',
           headers : {
             'Content-Type' : 'application/json',
@@ -53,7 +53,7 @@ function PlaylistPage() {
 
     useEffect(()=>{
       const fetchallplaylists = async ()=>{
-        const response = await fetch('http://localhost:8000/api/v1/playlist/user/playlists',{
+        const response = await fetch('${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/user/playlists',{
           method : 'GET',
           headers : {
             'Content-Type' : 'application/json',
@@ -72,7 +72,7 @@ function PlaylistPage() {
     },[])
 
     const addtoplaylist = async (videoId , playlistId)=>{
-      const response = await fetch(`http://localhost:8000/api/v1/playlist/add/${videoId}/${playlistId}`,{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/add/${videoId}/${playlistId}`,{
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',
@@ -94,7 +94,7 @@ function PlaylistPage() {
     }
 
     const deletefromplaylist = async(videoId , playlistId)=>{
-      const response = await fetch(`http://localhost:8000/api/v1/playlist/remove/${videoId}/${playlistId}`,{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/remove/${videoId}/${playlistId}`,{
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',
@@ -116,7 +116,7 @@ function PlaylistPage() {
     }
 
     const deleteplaylist = async ()=>{
-      const response = await fetch(`http://localhost:8000/api/v1/playlist/${playlist._id}`,{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/${playlist._id}`,{
         method : 'DELETE',
         headers : {
           'Content-Type' : 'application/json',
@@ -142,7 +142,7 @@ function PlaylistPage() {
     const [editdescription , setEditDescription] = useState(playlist.description)
         
     const editplaylist = async ()=>{
-      const response = await fetch(`http://localhost:8000/api/v1/playlist/${playlist._id}`,{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/${playlist._id}`,{
         method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json',

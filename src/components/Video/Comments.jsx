@@ -13,7 +13,7 @@ function Comments(props) {
     }
 
     const videocomments = async ()=>{
-        const response = await fetch(`http://localhost:8000/api/v1/comments/${props.videoId}?page=1&limit=10`,{
+        const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/comments/${props.videoId}?page=1&limit=10`,{
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json',
@@ -27,7 +27,7 @@ function Comments(props) {
     
     
     const addcomment = async ()=>{
-        const response = await fetch(`http://localhost:8000/api/v1/comments/${props.videoId}` , {
+        const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/comments/${props.videoId}` , {
             method: 'POST',
             headers : {
                 'Content-Type' : 'application/json',

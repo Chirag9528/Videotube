@@ -1,6 +1,6 @@
 import React , {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar'
+import {LoadingBarContext} from '../contexts/index.jsx'
 
 function PublishVideo(){
     const [videocredentials , setVideoCredentials] = useState({title : "" , description : "" , videoFile : null , thumbnail : null})
@@ -22,7 +22,7 @@ function PublishVideo(){
             formData.append("thumbnail", videocredentials.thumbnail);
 
             setProgress(30)
-            const response = await fetch( "http://localhost:8000/api/v1/videos" , {
+            const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/videos` , {
                 method : "POST",
                 body : formData,
                 headers : {

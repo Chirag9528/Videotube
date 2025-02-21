@@ -18,7 +18,7 @@ function CommentCard(props) {
 
     useEffect(()=>{
         const checklike = async ()=>{
-            const response = await fetch(`http://localhost:8000/api/v1/likes/checklike/c/${props.comment._id}` , {
+            const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/likes/checklike/c/${props.comment._id}` , {
                 method : 'GET' ,
                 headers : {
                     'Content-Type' : 'application/json',
@@ -40,7 +40,7 @@ function CommentCard(props) {
 
     const togglelike = async ()=>{
         try {
-          const response = await fetch( `http://localhost:8000/api/v1/likes/toggle/c/${props.comment._id}` , {
+          const response = await fetch( `${import.meta.env.VITE_HOSTNAME}/api/v1/likes/toggle/c/${props.comment._id}` , {
             method : "POST",
             headers : {
               'Content-Type' : 'application/json',
@@ -59,7 +59,7 @@ function CommentCard(props) {
     }
 
     const deletecomment = async ()=>{
-        const response = await fetch(`http://localhost:8000/api/v1/comments/c/${props.comment._id}` , {
+        const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/comments/c/${props.comment._id}` , {
             method : 'DELETE',
             headers : {
                 'Content-Type' : 'application/json',
@@ -75,7 +75,7 @@ function CommentCard(props) {
     }
 
     const updatecomment = async ()=>{
-        const response = await fetch(`http://localhost:8000/api/v1/comments/c/${props.comment._id}`,{
+        const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/comments/c/${props.comment._id}`,{
             method: 'PATCH',
             headers : {
                 'Content-Type' : 'application/json',

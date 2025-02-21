@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { GoPlus } from 'react-icons/go'
-import { Link, useNavigate } from 'react-router-dom'
-import PlayListCard from '../components/PlayList/PlayListCard';
-import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar';
+import { useNavigate } from 'react-router-dom'
+import {PlayListCard} from '../components/index.jsx';
+import {LoadingBarContext} from '../contexts/index.jsx'
 
 function Playlist() {
   const [playlists , setPlayLists] = useState([])
@@ -34,7 +34,7 @@ function Playlist() {
   useEffect(()=>{
     const getPlaylists = async ()=>{
       setProgress(20)
-      const response = await fetch('http://localhost:8000/api/v1/playlist/user/playlists' , {
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/user/playlists` , {
         method : 'GET',
         headers : {
           'Content-Type' : 'application/json',
@@ -55,7 +55,7 @@ function Playlist() {
   },[])
 
   const createplaylist = async ()=>{
-    const response = await fetch('http://localhost:8000/api/v1/playlist' , {
+    const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist` , {
       method : 'POST' ,
       headers : {
         'Content-Type' : 'application/json',
@@ -78,7 +78,7 @@ function Playlist() {
   }
 
   const editplaylist = async ()=>{
-    const response = await fetch(`http://localhost:8000/api/v1/playlist/${editplaylistdetail._id}`,{
+    const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/playlist/${editplaylistdetail._id}`,{
       method : 'PATCH',
       headers : {
         'Content-Type' : 'application/json',

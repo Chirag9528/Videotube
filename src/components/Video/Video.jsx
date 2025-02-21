@@ -1,6 +1,6 @@
 import React , {useState , useRef, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
-import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
+import LoadingBarContext from '../../contexts/LoadingBar/LoadingBar';
 
 function Video(props) {
   const navigate = useNavigate()

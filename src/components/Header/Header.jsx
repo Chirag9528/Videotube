@@ -3,10 +3,10 @@ import { IoIosSearch } from "react-icons/io";
 import { GoPlus } from "react-icons/go";
 import ProfileButton from './ProfileButton';
 import { FaBars } from 'react-icons/fa';
-import AuthContext from '../contexts/Auth/AuthContext';
-import MenuContext from '../contexts/MenuButton/MenuContext';
+import {AuthContext} from '../../contexts/index.jsx'
+import {MenuContext} from '../../contexts/index.jsx'
+import {LoadingBarContext} from '../../contexts/index.jsx'
 import { Link, useNavigate } from 'react-router-dom';
-import LoadingBarContext from '../contexts/LoadingBar/LoadingBar';
 function Header(props) {
   const {isloggedIn , setIsLoggedIn} = useContext(AuthContext)
   const {isOpen , setIsOpen} = useContext(MenuContext)
@@ -36,7 +36,7 @@ function Header(props) {
 
   const dologin = async (e)=>{
     e.preventDefault();
-    const response = await fetch('http://localhost:8000/api/v1/users/login',{
+    const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/login`,{
       method : 'POST',
       headers : {
         'Content-Type' : 'application/json'
@@ -60,7 +60,7 @@ function Header(props) {
   
   useEffect(()=>{
     const checkauthentication = async ()=>{
-      const response = await fetch('http://localhost:8000/api/v1/users/verifytoken',{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/verifytoken`,{
         method : 'GET',
         headers : {
           'Content-Type' : 'application/json'
@@ -107,7 +107,7 @@ function Header(props) {
         }
 
         // Make the request
-        const response = await fetch("http://localhost:8000/api/v1/users/register", {
+        const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/register`, {
             method: "POST",
             body: formData, // Send FormData directly
         });

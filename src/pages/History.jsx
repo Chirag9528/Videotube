@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar'
-import Video from '../components/Video/Video'
+import {LoadingBarContext} from '../contexts/index.jsx'
+import {Video} from "../components/index.jsx"
 
 function History() {
 
@@ -10,7 +10,7 @@ function History() {
   useEffect(()=>{
     const fetchhistory = async ()=>{
       setProgress(20)
-      const response = await fetch('http://localhost:8000/api/v1/users/history',{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/history`,{
         method : 'GET',
         credentials : "include"
       })

@@ -1,6 +1,6 @@
 import React,{useState , useEffect, useContext} from 'react'
-import Video from '../components/Video/Video'
-import LoadingBarContext from '../components/contexts/LoadingBar/LoadingBar'
+import {Video} from "../components/index.jsx"
+import {LoadingBarContext} from '../contexts/index.jsx'
 
 function LikedVideos(){
   const [likedvideos , setLikedVideos] = useState([])
@@ -8,7 +8,7 @@ function LikedVideos(){
   useEffect(()=>{
       const fetchData = async()=>{
         setProgress(20)
-        const response = await fetch('http://localhost:8000/api/v1/likes/videos', {
+        const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/likes/videos`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -1,8 +1,8 @@
 import React, { useContext, useState} from "react";
 import {useNavigate} from 'react-router-dom'
 import { CgProfile } from "react-icons/cg";
-import AuthContext from "../contexts/Auth/AuthContext";
-import LoadingBarContext from "../contexts/LoadingBar/LoadingBar";
+import AuthContext from "../../contexts/Auth/AuthContext";
+import LoadingBarContext from "../../contexts/LoadingBar/LoadingBar";
 
 function ProfileButton(props){
   const {setIsLoggedIn} = useContext(AuthContext)
@@ -12,7 +12,7 @@ function ProfileButton(props){
 
   const logout = async ()=>{
     setProgress(20)
-    const response = await fetch('http://localhost:8000/api/v1/users/logout' , {
+    const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/logout` , {
       method : 'POST',
       headers : {
         'Content-Type' : 'application/json'

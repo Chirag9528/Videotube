@@ -11,7 +11,7 @@ function UpdateAvatar() {
     if (updatedavatar){
       formData.append('avatar' , updatedavatar)
 
-      const response = await fetch('http://localhost:8000/api/v1/users/avatar',{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/avatar`,{
         method : 'PATCH',
         body : formData,
         credentials : "include"

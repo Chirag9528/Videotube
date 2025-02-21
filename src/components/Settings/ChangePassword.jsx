@@ -13,7 +13,7 @@ function ChangePassword(){
       alert("Password and Confirm Password do not match");
     }
     else{
-      const response = await fetch('http://localhost:8000/api/v1/users/change-password',{
+      const response = await fetch(`${import.meta.env.VITE_HOSTNAME}/api/v1/users/change-password`,{
         method : 'POST',
         headers : {
           'Content-Type' : 'application/json'

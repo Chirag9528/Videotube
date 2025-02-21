@@ -7,7 +7,7 @@ import { AiFillLike } from "react-icons/ai";
 import { MdSubscriptions } from "react-icons/md";
 
 import { NavLink } from 'react-router-dom';
-import MenuContext from '../contexts/MenuButton/MenuContext';
+import MenuContext from '../../contexts/MenuButton/MenuContext';
 
 const routes = [
     {

@@ -3,7 +3,7 @@ import './App.css'
 import {Header, Sidebar} from "./components/index.jsx"
 import { Outlet } from 'react-router-dom'
 import LoadingBar from "react-top-loading-bar"
-import LoadingBarContext from './components/contexts/LoadingBar/LoadingBar.js'
+import {LoadingBarContext} from './contexts/index.jsx'
 
 function App(){
   const {progress} = useContext(LoadingBarContext)
