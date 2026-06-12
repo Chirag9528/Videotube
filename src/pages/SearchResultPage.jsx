@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import {ResultVideoCard} from '../components/index.jsx'
-import { color } from 'framer-motion'
 import {LoadingBarContext} from '../contexts/index.jsx'
 
 function SearchResultPage(){
@@ -35,15 +34,17 @@ function SearchResultPage(){
     },[query])
 
   return (
-    <div className='mx-4 mt-4 card container column flex-column flex-nowrap p-0' style={{backgroundColor:"rgb(0,0,0)" , color : "white" , height : "85vh" , width : "83vw" , overflow : "auto"}}>
+    <div className='page-container'>
+      <div className="scroll-list-panel">
       {
         searchedvideos.map((video)=>{
             return <ResultVideoCard key = {video._id} videodetails={video}/>
         })
       }
       {
-        searchedvideos.length === 0 ? <div style={{color : "white"}}>No Videos Matched</div> : ""
+        searchedvideos.length === 0 ? <div className="empty-state">No Videos Matched</div> : ""
       }
+      </div>
     </div>
   )
 }

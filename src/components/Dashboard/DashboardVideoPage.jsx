@@ -34,13 +34,17 @@ function DashboardVideoPage(){
 
 
   return (
-    <div className='mt-4'>
-        <div className="row row-cols-1 row-cols-md-3 g-4" style={{display : "flex"}}>
+    <div className='mt-3'>
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 video-grid">
           {
             allvideos.map((video)=>{
-              return (<div key={video._id} className="card ms-4 p-0 mb-4" style={{height:"250px" , width : "250px" , backgroundColor: "rgb(0,0,0)"}}> 
-                <Dashvideocard obj = {video} imgdim = {{height : "180px" , width : "247px"}}/>;
-              </div>)
+              return (
+                <div key={video._id} className="col">
+                  <div className="card video-card-item h-100">
+                    <Dashvideocard obj={video}/>
+                  </div>
+                </div>
+              )
             })
           }
         </div>

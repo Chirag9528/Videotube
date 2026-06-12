@@ -29,20 +29,25 @@ function History() {
   
 
   return (
-    <div className='m-4' style={{}}>
-        <h1 className='mb-3 ms-2' style={{flex : "10", textAlign : "left" , paddingLeft : "10px" , color :"white"}}>History</h1>
-        <div className="row row-cols-1 row-cols-md-3 g-4" style={{display : "flex" , color : "white" , height : "85vh" , width : "83vw"}}>
-          {
-            historyvideos.map((video)=>{
-              return (<div className="card ms-3 p-0" key={video._id} style={{height:"317px" , width : "375px" , backgroundColor: "rgb(0,0,0)"}}> 
-                  <Video obj = {video}/>;
-              </div>)
-            })
-          }
-          {
-            historyvideos.length === 0 ? <div style={{fontSize : "1.5rem" ,  width : "83vw"}}>Watch History is Empty</div> : ""
-          }
-        </div>
+    <div className="page-container">
+        <h1 className="page-title">History</h1>
+        {historyvideos.length === 0 ? (
+          <div className="empty-state">Watch History is Empty</div>
+        ) : (
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 video-grid">
+            {
+              historyvideos.map((video)=>{
+                return (
+                  <div className="col" key={video._id}>
+                    <div className="card video-card-item h-100">
+                      <Video obj={video}/>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
+        )}
     </div>
   )
 }

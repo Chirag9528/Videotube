@@ -2,8 +2,9 @@ import React from 'react'
 
 function Subscription() {
   return (
-    <div>
-      <h1>Subscription</h1>
+    <div className="page-container">
+      <h1 className="page-title">Subscriptions</h1>
+      <div className="empty-state">No subscriptions yet</div>
     </div>
   )
 }

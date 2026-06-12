@@ -21,7 +21,7 @@ function UpdateCoverImage(){
 
       if (response && response.success){
         alert('coverImage Updated Successfully')
-        navigate(0) // to refresh the page
+        navigate(0)
       }
       else{
         alert('Please Try Again')
@@ -33,18 +33,18 @@ function UpdateCoverImage(){
   }
 
   return (
-    <div style={{color : "white" , display : "flex" , flexDirection:"column" , justifyContent : "center" , alignItems : "center"}}>
-        <div className="card mt-4" style={{backgroundColor : "black" , color :"white" , width:"40vw" , border:"2px solid white"}} >
+    <div className="form-panel-wrapper">
+        <div className="card vt-form-card mt-2">
             <h3 className='mt-2 mb-4'>Update CoverImage</h3>
-            <form  style={{display : "flex" , flexDirection:"column" , justifyContent : "center" , alignContent:"center"}}>
-                <div className="row m-3" style={{}}>
-                    <label htmlFor="updatecoverImage" className="col-sm-4 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>CoverImage</label>
-                    <div className="col-sm-8">
-                    <input type="file" onChange={(e)=>{setUpdatedCoverImage(e.target.files[0])}} className="form-control" id="updatecoverImage"/>
+            <form>
+                <div className="row mb-3">
+                    <label htmlFor="updatecoverImage" className="col-12 col-sm-4 col-form-label text-sm-start">CoverImage</label>
+                    <div className="col-12 col-sm-8">
+                    <input type="file" onChange={(e)=>{setUpdatedCoverImage(e.target.files[0])}} className="form-control bg-black text-white" id="updatecoverImage"/>
                     </div>
                 </div>
-                <div className='row m-3' style={{display : "flex" , justifyContent:"center" , alignItems : "center"}}>
-                    <button onClick={updateImage} className='btn btn-secondary' style={{width:"8vw"}}>
+                <div className='d-flex justify-content-center'>
+                    <button onClick={updateImage} className='btn btn-secondary btn-submit'>
                         Update
                     </button>
                 </div>

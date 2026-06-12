@@ -140,46 +140,63 @@ function Header(props) {
 
   return (
     <>
-        <nav className="navbar bg-black" style={{width : "100%"}}>
-        <div className="container-fluid" style={{display:'flex'}}>
-            <div style={{display:"flex"}}>
-              <div className="top_section" style={{marginRight:"10px"}}>
+        <nav className="navbar bg-black vt-header">
+          <div className="container-fluid vt-header-bar">
+            
+            {/* LEFT SECTION: Hamburger menu and Branding */}
+            <div className="vt-header-left d-flex align-items-center">
+              <div className="top_section me-4">
                   <FaBars onClick={toggle}/>
               </div>
-              <a className="navbar-brand text-light fs-2">VideoTube</a>
+              <a className="navbar-brand text-light mb-0">VideoTube</a>
             </div>
-            <form className="d-flex" style={{flex:1,width:'100%',maxWidth:'50%'}} role="search" 
-              onSubmit={(e)=>{
-                e.preventDefault();
-                setProgress(10)
-                navigate("/searchresult" , {state : {query : searchquery }});
-                setSearchQuery("")
+            
+            {/* CENTER SECTION: Search input wrapper */}
+            <div className="vt-header-center">
+              <form className="d-flex vt-search-form" role="search" 
+                onSubmit={(e)=>{
+                  e.preventDefault();
+                  setProgress(10);
+                  navigate("/searchresult" , {state : {query : searchquery }});
+                  setSearchQuery("");
                 }}
               >
-            <input className="form-control me-2 bg-black text-light" value={searchquery} onChange={(e)=>{setSearchQuery(e.target.value)}} type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-dark" disabled={searchquery.length === 0} type='submit'>
-              <IoIosSearch style={{fontSize:'1.5rem'}}/>
-            </button>
-            </form>
-            {
-              !isloggedIn &&
-              <div>
-                <button className="btn btn-dark" onClick={registerhandle}> SignUp </button>
-                <button className="btn btn-dark" onClick={loginhandle}> Login </button>
-              </div>
-            }
-            {
-              isloggedIn &&
-              <div style={{display:'flex'}}>
-                <Link to="/publishvideo">
-                <button className="btn btn-dark" style={{height:'3rem'}}>
-                  <GoPlus style={{fontSize:'1.5rem'}}/> Create
+                <input 
+                  className="form-control vt-search-input" 
+                  value={searchquery} 
+                  onChange={(e)=>{setSearchQuery(e.target.value)}} 
+                  type="search" 
+                  placeholder="Search" 
+                  aria-label="Search"
+                />
+                <button className="btn vt-search-btn flex-shrink-0" disabled={searchquery.length === 0} type='submit'>
+                  <IoIosSearch style={{fontSize:'1.35rem'}}/>
                 </button>
-                </Link>
-                <ProfileButton avatar={localStorage.getItem('avatar')} setCredentials={setCredentials}/>
-              </div>
-            }
-        </div>
+              </form>
+            </div>
+            
+            {/* RIGHT SECTION: Auth Actions or Create & Profile */}
+            <div className="vt-header-right">
+              {!isloggedIn && (
+                <div className="vt-header-actions">
+                  <button className="btn vt-btn-ghost" onClick={registerhandle}>SignUp</button>
+                  <button className="btn vt-btn-ghost" onClick={loginhandle}>Login</button>
+                </div>
+              )}
+              {isloggedIn && (
+                <div className="vt-header-actions">
+                  <Link to="/publishvideo" className="text-decoration-none">
+                    <button className="btn vt-btn-create d-inline-flex align-items-center">
+                      <GoPlus style={{fontSize:'1.25rem'}}/>
+                      <span>Create</span>
+                    </button>
+                  </Link>
+                  <ProfileButton avatar={localStorage.getItem('avatar')} setCredentials={setCredentials}/>
+                </div>
+              )}
+            </div>
+
+          </div>
         </nav>
 
         {/* Login Modal */}

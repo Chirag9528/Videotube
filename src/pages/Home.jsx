@@ -29,13 +29,15 @@ function Home() {
   } , [])
 
   return (
-    <div className='m-4' style={{}}>
-        <div className="row row-cols-1 row-cols-md-3 g-4" style={{display : "flex"}}>
+    <div className="page-container">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 video-grid">
           {
             allvideos.map((video)=>{
               return (
-                <div key={video._id} className="card ms-4 p-0" style={{height:"317px" , width : "375px" , backgroundColor: "rgb(0,0,0)"}}> 
-                  <Video obj = {video}/>;
+                <div key={video._id} className="col">
+                  <div className="card video-card-item h-100">
+                    <Video obj={video}/>
+                  </div>
                 </div>
               )
             })

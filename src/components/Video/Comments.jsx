@@ -31,7 +31,6 @@ function Comments(props) {
             method: 'POST',
             headers : {
                 'Content-Type' : 'application/json',
-                // 'Authorization' : localStorage.getItem('token')
             },
             credentials : "include",
             body: JSON.stringify({message : content})
@@ -48,19 +47,28 @@ function Comments(props) {
         videocomments();
     },[])
     return (
-        <div className='card ms-4 p-0 my-4' style={{color:"white" , background: "rgb(0,0,0)"}}>
-            <h2>Comments</h2>
-            <div className='card' style={{color:"white" , background: "rgb(0,0,0)"}}>
-                <input className='my-0 ' type="text" name="content" id="comment" value={content} onChange={OnChange} placeholder='Add a comment' style={{color:"white" , background: "rgb(0,0,0)" , outline : "none" , border:"none"}}/>
-                <hr></hr>
-                <div className='' style={{display:"flex" , justifyContent:"right"}}>
-                    <button className='btn btn-light mx-3' onClick={addcomment}>Add</button>
-                    <button className='btn btn-light' onClick={cancelcomment}>Cancel</button>
-                </div>
+        <div className="comments-section">
+            <h2 className="comments-heading">Comments <span className="comments-count">{comments.length}</span></h2>
+            <div className="vt-surface comment-compose">
+                <input
+                  className="comment-input"
+                  type="text"
+                  name="content"
+                  id="comment"
+                  value={content}
+                  onChange={OnChange}
+                  placeholder="Add a comment..."
+                />
+                {content.length > 0 && (
+                  <div className="comment-compose-actions">
+                    <button className="btn btn-sm vt-btn-ghost" onClick={cancelcomment}>Cancel</button>
+                    <button className="btn btn-sm vt-btn-subscribe" onClick={addcomment}>Comment</button>
+                  </div>
+                )}
             </div>
-            <div>
+            <div className="comments-list">
                 {comments.map((comment)=>{
-                    return <CommentCard key = {comment._id} comment = {comment}/>
+                    return <CommentCard key={comment._id} comment={comment}/>
                 })}
             </div>
         </div>

@@ -54,7 +54,7 @@ function ProfileButton(props){
   return (
     <div className="dropdown">
       <button
-        className="btn btn-black d-flex align-items-center"
+        className="btn vt-btn-ghost d-flex align-items-center p-1"
         type="button"
         id="dropdownMenuButton"
         data-bs-toggle="dropdown"
@@ -72,7 +72,7 @@ function ProfileButton(props){
           <CgProfile/>
         )}
       </button>
-      <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+      <ul className="dropdown-menu dropdown-menu-end vt-dropdown" aria-labelledby="dropdownMenuButton">
         <li>
           <button className="dropdown-item" onClick={updateaccountdetails}>
             Update Account Details

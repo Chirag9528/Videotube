@@ -25,7 +25,7 @@ function ChangePassword(){
       .catch(error => console.log(error))
 
       if (response && response.success){
-        navigate(0) // to refresh page
+        navigate(0)
         alert('Password Update Successfully')
       }
       else{
@@ -35,30 +35,30 @@ function ChangePassword(){
   }
 
   return (
-    <div style={{color : "white" , display : "flex" , flexDirection:"column" , justifyContent : "center" , alignItems : "center"}}>
-        <div className="card mt-4" style={{backgroundColor : "black" , color :"white" , width:"40vw" , border:"2px solid white"}} >
+    <div className="form-panel-wrapper">
+        <div className="card vt-form-card mt-2">
             <h3 className='mt-2 mb-4'>Change Password</h3>
-            <form  style={{display : "flex" , flexDirection:"column" , justifyContent : "center" , alignContent:"center"}}>
-                <div className="row m-3" style={{}}>
-                    <label htmlFor="oldpassword" className="col-sm-5 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>Old Password</label>
-                    <div className="col-sm-7">
-                    <input type="password" value={oldpassword} onChange={(e)=>{setOldPassword(e.target.value)}} className="form-control" id="oldpassword"/>
+            <form>
+                <div className="row mb-3">
+                    <label htmlFor="oldpassword" className="col-12 col-sm-5 col-form-label text-sm-start">Old Password</label>
+                    <div className="col-12 col-sm-7">
+                    <input type="password" value={oldpassword} onChange={(e)=>{setOldPassword(e.target.value)}} className="form-control bg-black text-white" id="oldpassword"/>
                     </div>
                 </div>
-                <div className="row m-3" style={{}}>
-                    <label htmlFor="updatepassword" className="col-sm-5 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>New Password</label>
-                    <div className="col-sm-7">
-                    <input type="password" value={newpassword} onChange={(e)=>{setNewPassword(e.target.value)}} className="form-control" id="updatepassword"/>
+                <div className="row mb-3">
+                    <label htmlFor="updatepassword" className="col-12 col-sm-5 col-form-label text-sm-start">New Password</label>
+                    <div className="col-12 col-sm-7">
+                    <input type="password" value={newpassword} onChange={(e)=>{setNewPassword(e.target.value)}} className="form-control bg-black text-white" id="updatepassword"/>
                     </div>
                 </div>
-                <div className="row m-3" style={{}}>
-                    <label htmlFor="updaterepassword" className="col-sm-5 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>Confirm Password</label>
-                    <div className="col-sm-7">
-                    <input type="password" value={repassword} onChange={(e)=>{setRePassword(e.target.value)}}  className="form-control" id="updaterepassword"/>
+                <div className="row mb-3">
+                    <label htmlFor="updaterepassword" className="col-12 col-sm-5 col-form-label text-sm-start">Confirm Password</label>
+                    <div className="col-12 col-sm-7">
+                    <input type="password" value={repassword} onChange={(e)=>{setRePassword(e.target.value)}}  className="form-control bg-black text-white" id="updaterepassword"/>
                     </div>
                 </div>
-                <div className='row m-3' style={{display : "flex" , justifyContent:"center" , alignItems : "center"}}>
-                    <button onClick={updatepassword} className='btn btn-secondary' style={{width:"8vw"}}>
+                <div className='d-flex justify-content-center'>
+                    <button onClick={updatepassword} className='btn btn-secondary btn-submit'>
                         Change
                     </button>
                 </div>

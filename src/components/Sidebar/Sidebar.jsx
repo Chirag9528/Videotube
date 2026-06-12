@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import {AnimatePresence, motion} from 'framer-motion';
 import { AiFillHome } from "react-icons/ai";
-import { FaBars, FaHistory } from "react-icons/fa";
+import { FaHistory } from "react-icons/fa";
 import { CgPlayList } from "react-icons/cg";
 import { AiFillLike } from "react-icons/ai";
 import { MdSubscriptions } from "react-icons/md";
@@ -37,23 +37,33 @@ const routes = [
     }
 ]
 
-function Sidebar(props) {
-    const {isOpen} = useContext(MenuContext)
+function Sidebar() {
+    const {isOpen, setIsOpen} = useContext(MenuContext)
   return (
-    <div style={{}}>
-        <motion.div animate={{
-            width:isOpen ? "200px" : "50px",
-            height : "89vh",
+    <>
+        {isOpen && (
+          <div
+            className="sidebar-overlay d-lg-none"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+        <motion.div
+          animate={{
+            width: isOpen ? "200px" : "50px",
             transition: {
-                duration: 0.5,
-                type: "spring",
-                damping: 10,
-              },
-        }} className="sidebar">
+              duration: 0.5,
+              type: "spring",
+              damping: 10,
+            },
+          }}
+          className="sidebar"
+          style={{ zIndex: isOpen ? 1050 : 1 }}
+        >
             <section className="routes">
                 {
                     routes.map((route)=>{
-                        return <NavLink  to={route.path} key = {route.name} className="link">
+                        return <NavLink to={route.path} key={route.name} className="link">
                             <div className="icon">{route.icon}</div>
                             <AnimatePresence>
                                 {isOpen && <motion.div className="link_text">{route.name}</motion.div>}
@@ -63,7 +73,7 @@ function Sidebar(props) {
                 }
             </section>
         </motion.div>
-    </div>
+    </>
   )
 }
 

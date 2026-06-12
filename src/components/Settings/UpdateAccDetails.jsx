@@ -45,24 +45,24 @@ function UpdateAccDetails(){
         fetchuser()
     },[])
     return (
-    <div style={{color : "white" , display : "flex" , flexDirection:"column" , justifyContent : "center" , alignItems : "center"}}>
-        <div className="card mt-4" style={{backgroundColor : "black" , color :"white" , width:"40vw" , border:"2px solid white"}} >
+    <div className="form-panel-wrapper">
+        <div className="card vt-form-card mt-2">
             <h3 className='mt-2 mb-4'>Update Account Details</h3>
-            <form  style={{display : "flex" , flexDirection:"column" , justifyContent : "center" , alignContent:"center"}}>
-                <div className="row m-3" style={{}}>
-                    <label htmlFor="updateEmail" className="col-sm-3 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>Email</label>
-                    <div className="col-sm-9">
-                    <input type="email" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} className="form-control" id="updateEmail"/>
+            <form>
+                <div className="row mb-3">
+                    <label htmlFor="updateEmail" className="col-12 col-sm-3 col-form-label text-sm-start">Email</label>
+                    <div className="col-12 col-sm-9">
+                    <input type="email" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} className="form-control bg-black text-white" id="updateEmail"/>
                     </div>
                 </div>
-                <div className="row m-3" style={{}}>
-                    <label htmlFor="inputFullName" className="col-sm-3 col-form-label" style={{textAlign:"left" , fontSize:"1.2rem"}}>Full Name</label>
-                    <div className="col-sm-9">
-                    <input type="text" name="fullName" value={fullName} onChange={(e)=>{setFullName(e.target.value)}} className="form-control" id="inputFullName"/>
+                <div className="row mb-3">
+                    <label htmlFor="inputFullName" className="col-12 col-sm-3 col-form-label text-sm-start">Full Name</label>
+                    <div className="col-12 col-sm-9">
+                    <input type="text" name="fullName" value={fullName} onChange={(e)=>{setFullName(e.target.value)}} className="form-control bg-black text-white" id="inputFullName"/>
                     </div>
                 </div>
-                <div className='row m-3' style={{display : "flex" , justifyContent:"center" , alignItems : "center"}}>
-                    <button onClick={updateDetails} className='btn btn-secondary' style={{width:"8vw"}}>
+                <div className='d-flex justify-content-center'>
+                    <button onClick={updateDetails} className='btn btn-secondary btn-submit'>
                         Update
                     </button>
                 </div>

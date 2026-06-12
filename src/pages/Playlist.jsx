@@ -101,14 +101,12 @@ function Playlist() {
   }
 
   return (
-    <div className='m-4' style={{color : "white" , width : "82vw"}}>
-      <div style={{display : "flex"}}>
-        <h1 style={{flex : "10", textAlign : "left" , paddingLeft : "10px"}}>Playlists</h1>
-        <div style={{}}>
-          <button className="btn btn-dark" style={{height:'3rem'}} onClick={()=>{ref.current.click()}}>
-            <GoPlus style={{fontSize:'1.5rem'}}/> New Playlist
-          </button>
-        </div>
+    <div className='page-container'>
+      <div className="page-header">
+        <h1 className="page-title m-0">Playlists</h1>
+        <button className="btn btn-dark" onClick={()=>{ref.current.click()}}>
+          <GoPlus style={{fontSize:'1.5rem'}}/> New Playlist
+        </button>
       </div>
 
     {/* Playlist Modal */}
@@ -146,7 +144,7 @@ function Playlist() {
     </div>
     {/* Playlist Modal Ends here */}
 
-    <div className="row row-cols-1 row-cols-md-3 g-4 m-2" style={{display : "flex"}}>
+    <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
     {
       playlists.map((playlist)=>{
         return <PlayListCard key = {playlist._id} playlist = {playlist} setEditPlayListDetail={setEditPlayListDetail} onedit = {setEditModalVisibility}/>

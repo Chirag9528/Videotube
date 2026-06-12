@@ -109,52 +109,39 @@ function CommentCard(props) {
     }
 
     return (
-        <div className='card p-4 my-2' style={{color : "white" , background: "rgb(84, 82, 82)" , borderRadius:"20px"}}>
-            <div className="card-title px-3 my-0" style={{color:"rgb(212, 203, 203)" , display:"flex"}} >
-                <div style={{flex:"10" , textAlign:"left"}}>
-                 @{props.comment.commentby.username}
-                </div>
-                 <button id="dropdownMenuButton" type='button' data-bs-toggle="dropdown"  aria-expanded="false" style={{background:"rgb(84,82,82)" , border : "none"}}>
+        <div className="vt-surface comment-card">
+            <div className="comment-card-header">
+                <span className="comment-author">@{props.comment.commentby.username}</span>
+                <button
+                  className="comment-menu-btn"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                     <BsThreeDotsVertical />
                 </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><button className='dropdown-item' onClick={editcomment}>Edit</button></li>
-                    <li><button className='dropdown-item' onClick={deletecomment}>Delete</button></li>
+                <ul className="dropdown-menu dropdown-menu-end vt-dropdown">
+                    <li><button className="dropdown-item" onClick={editcomment}>Edit</button></li>
+                    <li><button className="dropdown-item" onClick={deletecomment}>Delete</button></li>
                 </ul>
             </div>
-            <div className="card-body" style={{display:"flex"}}>
-                <textarea
-                    ref={ref}
-                    className={`${iseditable ? '' : 'border-0'}`}
-                    style={{background:'rgb(84,82,82)', color:"white" , outline: "none" , width:"100%"}} 
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    readOnly={!iseditable}
-                    />
-            </div>
-            <div className='card-footer border-0' style={{background:'rgb(84,82,82)' , display: "flex" , fontSize:"1.5rem"}}>
-                <div style={{flex:"10" , display:"flex" , alignItems : "center"}}>
-                    {
-                        liked &&
-                        <BiSolidLike onClick={togglelike}/>
-                    }
-                    {
-                        !liked && 
-                        <BiLike onClick={togglelike}/>
-                    }
-                </div>
-                <div>
-                    { 
-                        iseditable && 
-                        <div className="btn btn-primary mx-3" onClick={cancelupdate}>Cancel</div>
-
-                    }
-                    {
-                        iseditable &&
-                        <div className="btn btn-primary" onClick={updatecomment}>Update</div>
-
-                    }
-                </div>
+            <textarea
+                ref={ref}
+                className={`comment-text ${iseditable ? 'editing' : ''}`}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                readOnly={!iseditable}
+            />
+            <div className="comment-card-footer">
+                <button className={`engagement-btn sm ${liked ? 'active' : ''}`} onClick={togglelike}>
+                    {liked ? <BiSolidLike /> : <BiLike />}
+                </button>
+                {iseditable && (
+                  <div className="comment-edit-actions">
+                    <button className="btn btn-sm vt-btn-ghost" onClick={cancelupdate}>Cancel</button>
+                    <button className="btn btn-sm vt-btn-subscribe" onClick={updatecomment}>Update</button>
+                  </div>
+                )}
             </div>
         </div>
   )

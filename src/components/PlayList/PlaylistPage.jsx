@@ -166,26 +166,26 @@ function PlaylistPage() {
     
   return (
     <>
-    <div style={{color : "white" , width : "83vw" , display : "flex" , height : "90vh"}}>
-      <div className="card" style={{ width: "27vw" , height : "89vh" , textAlign:"left" , backgroundColor:"rgb(0,0,0)" , color : "white"}}>
-        <img src={'https://res.cloudinary.com/harharmahadev/image/upload/v1739379626/bk6mx7jozcwc1r2nupqw.jpg'} style={{borderRadius : "10px"}}/>
-        <div style={{display : "flex"}}>
-          <div className="card-title px-2 my-2" style={{flex : "10" , fontSize : "1.5rem"}}>{playlist?.name || ""}</div>
-          <div style={{display : "flex" , justifyContent : "center" , alignItems : "center"}}>
-            <button id="dropdownMenuButton" type='button' data-bs-toggle="dropdown"  aria-expanded="false" style={{background:"rgb(0,0,0)" , color:"white" , border : "none"}}>
+    <div className="playlist-page-layout">
+      <div className="card playlist-sidebar-panel p-2">
+        <img src={'https://res.cloudinary.com/harharmahadev/image/upload/v1739379626/bk6mx7jozcwc1r2nupqw.jpg'} alt="Playlist cover"/>
+        <div className="d-flex align-items-start gap-2 mt-2">
+          <div className="card-title px-1 my-1 flex-grow-1 text-start fs-5">{playlist?.name || ""}</div>
+          <div>
+            <button id="playlistPageDropdown" type='button' data-bs-toggle="dropdown" aria-expanded="false" style={{background:"rgb(0,0,0)" , color:"white" , border : "none"}}>
                   <BsThreeDotsVertical />
             </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <ul className="dropdown-menu" aria-labelledby="playlistPageDropdown">
                 <li><button className='dropdown-item' onClick={()=>{editref.current.click()}}>Edit</button></li>
                 <li><button className='dropdown-item' onClick={deleteplaylist}>Delete</button></li>
             </ul>
           </div>
         </div>
-        <div className="card-body px-2 py-1" style={{}}>
+        <div className="card-body px-1 py-2 text-start">
             {playlist?.description || ""}
         </div>
       </div>
-      <div className="card container column flex-column flex-nowrap  " style={{width : "57vw" , backgroundColor : "rgb(0,0,0)" , overflow : "auto"}}>
+      <div className="card playlist-videos-panel p-2">
         {
             playlist?.videos?.map((videoId)=>{
                 return <VideoCard key={videoId} videoId = {videoId} setDeleteVideoId = {setDeleteVideoId} setIsDeletable = {setIsDeletable} setAddVideoId = {setAddVideoId}  setIsAddable = {setIsAddable} />

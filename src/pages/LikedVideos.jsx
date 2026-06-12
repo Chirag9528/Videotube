@@ -12,7 +12,6 @@ function LikedVideos(){
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : localStorage.getItem('token')
           },
           credentials : "include"
         })
@@ -28,22 +27,27 @@ function LikedVideos(){
       fetchData()
     } , [])
   return (
-    <div className='m-4' style={{}}>
-        <h1 className='mb-3 ms-2' style={{flex : "10", textAlign : "left" , paddingLeft : "10px" , color :"white"}}>Liked Videos</h1>
-        <div className="row row-cols-1 row-cols-md-3 g-4" style={{display : "flex" , color : "white" , height : "85vh" , width : "83vw"}}>
-          {
-            likedvideos.map((video)=>{
-              delete video._id
-              const newdetail = {...video , ["_id"] : video.videoid}
-              return (<div className="card ms-3 p-0" key={newdetail._id} style={{height:"317px" , width : "375px" , backgroundColor: "rgb(0,0,0)"}}> 
-                  <Video obj = {newdetail}/>;
-              </div>)
-            })
-          }
-          {
-            likedvideos.length === 0 ? <div style={{fontSize : "1.5rem" ,  width : "83vw"}}>No Liked Videos</div> : ""
-          }
-        </div>
+    <div className="page-container">
+        <h1 className="page-title">Liked Videos</h1>
+        {likedvideos.length === 0 ? (
+          <div className="empty-state">No Liked Videos</div>
+        ) : (
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 video-grid">
+            {
+              likedvideos.map((video)=>{
+                delete video._id
+                const newdetail = {...video , ["_id"] : video.videoid}
+                return (
+                  <div className="col" key={newdetail._id}>
+                    <div className="card video-card-item h-100">
+                      <Video obj={newdetail}/>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
+        )}
     </div>
   )
 }

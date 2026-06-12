@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { BiLike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
-import MenuContext from '../../contexts/MenuButton/MenuContext';
 import Comments from './Comments';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -21,9 +20,6 @@ function VideoBig() {
     useEffect(()=>{
         videoRef.current.play()
     },[])
-
-    const {isOpen} = useContext(MenuContext)
-
 
     const togglesubscription = async ()=>{
       try {
@@ -232,48 +228,66 @@ function VideoBig() {
 
     return (
     <>
-    <div className="card ms-4 p-0" style={{color:"white" , background: "rgb(0,0,0)" , height:`${isOpen ? '95vh' : '105vh'}` , width:`${isOpen ? '80vw' : '90vw'}`}}>
+    <div className="video-watch-container">
+      <div className="video-frame">
         <video
             ref={videoRef}
-            style={{borderRadius : "15px" }}
             controls
         >
           <source src={obj.videoFile} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="card-body p-0 my-2" style={{display:"flex" , flexDirection:"column"}}>
-          <h4 className="card-text m-2 px-2 text-start">{obj.title}</h4>
-          <div className="row g-0 my-2" style={{}}>
-            <div className="col-md-1 px-4" onClick={showdashboard} style={{cursor : "pointer" , "display" : "flex" , justifyContent : "left"}}>
-              <img src={obj.avatar} className="img-fluid rounded-circle" style={{height : "50px" , width: "50px" , objectFit : "cover" , borderRadius : "50%"}} width="60px" alt="..."/>
+      </div>
+
+      <div className="vt-surface video-info-panel">
+        <h1 className="video-title">{obj.title}</h1>
+
+        <div className="video-toolbar">
+          <div className="channel-block">
+            <img
+              src={obj.avatar}
+              className="channel-avatar-lg"
+              alt="Channel avatar"
+              onClick={showdashboard}
+            />
+            <div className="channel-details">
+              <span className="channel-name" onClick={showdashboard}>{obj.ownername}</span>
+              <button
+                className={`btn btn-sm ${isSubscribed ? 'vt-btn-subscribed' : 'vt-btn-subscribe'}`}
+                onClick={togglesubscription}
+              >
+                {isSubscribed ? "Subscribed" : "Subscribe"}
+              </button>
             </div>
-            <div className="col-md-8" style={{display:"flex" , alignItems:"center"}}>
-              <div className="" style={{ display : "flex" , cursor :"pointer"}} onClick={showdashboard}>
-                <p className="card-text text-start" style={{color: "rgb(169 , 169 , 169)" , paddingLeft:"10px" , paddingRight:"40px"}}>{obj.ownername}</p>
-              </div>
-              <div className="" style={{}}>
-                <button className={`btn ${isSubscribed? 'btn-dark' : 'btn-light'}`} onClick={togglesubscription}>{isSubscribed? "Subscribed" : "Subscribe"}</button>
-              </div>
-            </div>
-            <div className="col-md-2" style={{display:"flex" , alignItems:"center" , justifyContent:"center"}}>
-              {
-                liked && <BiSolidLike style={{color:"white" ,fontSize:"2.5rem"}} onClick={togglelike}/>
-              }
-              {
-                !liked && 
-                <BiLike style={{color:"white" , fontSize:"2.5rem"}} onClick={togglelike}/>
-              }
-            </div>
-            <div className='col-md-1' style={{display : "flex" , alignItems : "center" , justifyContent : "center"}}>
-                <button className='p-0 m-0' id="dropdownMenuButton" type='button' data-bs-toggle="dropdown"  aria-expanded="false" style={{background:"rgb(0,0,0)" , color:"white" , border : "none" , fontSize  :"1.3rem"}}>
-                    <BsThreeDotsVertical />
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{}}>
-                    <li><button className='dropdown-item' style={{}} onClick={()=>{ref.current.click()}}>Add to Playlist</button></li>
-                </ul>
-            </div>
+          </div>
+
+          <div className="engagement-block">
+            <button
+              className={`engagement-btn ${liked ? 'active' : ''}`}
+              onClick={togglelike}
+              aria-label="Like video"
+            >
+              {liked ? <BiSolidLike /> : <BiLike />}
+              <span>Like</span>
+            </button>
+            <button
+              className="engagement-btn"
+              id="dropdownMenuButton"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              aria-label="More options"
+            >
+              <BsThreeDotsVertical />
+            </button>
+            <ul className="dropdown-menu dropdown-menu-end vt-dropdown" aria-labelledby="dropdownMenuButton">
+              <li><button className="dropdown-item" onClick={()=>{ref.current.click()}}>Add to Playlist</button></li>
+            </ul>
+          </div>
         </div>
-        </div>
+      </div>
+
+      <Comments videoId={obj._id}/>
     </div>
 
     {/* Playlists Modal */}
@@ -318,9 +332,6 @@ function VideoBig() {
     </div>
     </div>
     {/* PlayLists Modal Ends here */}
-
-
-    <Comments videoId = {obj._id}/>
     </>
   )
 }

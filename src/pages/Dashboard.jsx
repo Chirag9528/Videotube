@@ -10,7 +10,6 @@ function Dashboard(){
     const [flag , setFlag] = useState(false)
     const [isSubscribed , setIsSubscribed] = useState(false)
 
-    // const {name} = location.state || ""  --> not working after refreshing
     useEffect(()=>{
         const getdashboard = async ()=>{
             try {
@@ -30,7 +29,7 @@ function Dashboard(){
             }
         }
         getdashboard();
-    },[name])
+    },[])
     
     useEffect(() => {
         if (flag){
@@ -42,17 +41,17 @@ function Dashboard(){
     
     const handledashboardplaylists = (userId) =>{
         setProgress(10)
-        navigate("/dashboard/playlists" , {state : {userId : userId}})  // state gets attached to location object... we use useLocation hook to get it
+        navigate("/dashboard/playlists" , {state : {userId : userId}})
     }
 
     const handledashboardvideos = (userId) =>{
         setProgress(10)
-        navigate("/dashboard/videos" , {state : {userId : userId}})  // state gets attached to location object... we use useLocation hook to get it
+        navigate("/dashboard/videos" , {state : {userId : userId}})
     }
 
     const handledashboardtweets = (userId) =>{
         setProgress(10)
-        navigate("/dashboard/tweets" , {state : {userId : userId}})  // state gets attached to location object... we use useLocation hook to get it
+        navigate("/dashboard/tweets" , {state : {userId : userId}})
     }
 
     const togglesubscription = async ()=>{
@@ -61,7 +60,6 @@ function Dashboard(){
             method : "POST",
             headers : {
               'Content-Type' : 'application/json',
-              // 'Authorization' : localStorage.getItem('token')
             },
             credentials : "include"
           })
@@ -76,25 +74,33 @@ function Dashboard(){
     }
 
   return (
-    <div className='pt-3 ps-3' style={{color : "white", height:"90vh" , width : "83vw"}}>
-        <div className="card pt-0" style={{height: "20vh" , backgroundColor : 'rgb(0,0,0)'}}>
-            <img src={dashboard.coverImage} style={{height :"19vh" , borderRadius:"20px"}} />
+    <div className='dashboard-page'>
+        <div className="dashboard-cover">
+            <img src={dashboard.coverImage} alt="Channel cover" />
         </div>
-        <div className="card pt-2 " style={{backgroundColor : 'rgb(0,0,0)', display : "flex" ,  flexDirection : "row"}}>
-            <div className="card p-0" style={{display:"flex" , justifyContent:"center" , alignItems :"center" ,  backgroundColor:'rgb(0,0,0)' , width : "14vw"}}>
-                <img src={dashboard.avatar} className="img-fluid rounded-circle" style={{height : "17vh" , width: "10vw" , objectFit : "cover" , borderRadius : "50%"}}/>
+        <div className="dashboard-profile-row pt-3">
+            <div className="dashboard-avatar-wrap">
+                <img src={dashboard.avatar} className="dashboard-avatar" alt="Channel avatar"/>
             </div>
-            <div className="card p-0" style={{color:"white", backgroundColor:'rgb(0,0,0)', width: "68vw" , textAlign : "left"}}>
-                <div className="px-2 pt-1 m-0" style={{flex : "10" , fontSize : "1.5rem"}}>{dashboard.username || ""}</div>
-                <div className="px-2 pt-2" style={{height:"5vh" ,  textAlign : "left", color:"rgb(169,169,169)"}}> {dashboard.subscribersCount} Subscribers  &nbsp; <span style={{ fontWeight: "bold", fontSize: "1.2rem", lineHeight: "1" }}>·</span>&nbsp;&nbsp;{dashboard.channelsSubscribedToCount} Subscribed</div>
-                <div className="px-2 pt-2" style={{height:"7vh"}}> <button className={`btn ${isSubscribed? 'btn-dark' : 'btn-light'}`} onClick={togglesubscription}>{isSubscribed? "Subscribed" : "Subscribe"}</button></div>
+            <div className="dashboard-info">
+                <div className="px-2 pt-1 m-0 fs-5">{dashboard.username || ""}</div>
+                <div className="px-2 pt-2" style={{color:"rgb(169,169,169)"}}>
+                  {dashboard.subscribersCount} Subscribers &nbsp;
+                  <span style={{ fontWeight: "bold", fontSize: "1.2rem", lineHeight: "1" }}>·</span>&nbsp;&nbsp;
+                  {dashboard.channelsSubscribedToCount} Subscribed
+                </div>
+                <div className="px-2 pt-2">
+                  <button className={`btn ${isSubscribed? 'btn-dark' : 'btn-light'}`} onClick={togglesubscription}>
+                    {isSubscribed? "Subscribed" : "Subscribe"}
+                  </button>
+                </div>
             </div>
         </div>
-        <div className='ms-4' style={{ minHeight : "40vh"}}>
-            <nav className="navbar navbar-expand-lg" style={{fontSize : "1.2rem"}} >
-                <div onClick={()=>handledashboardvideos(dashboard._id)} className={`nav-item me-4 ms-4 ${location.pathname === "/dashboard/videos" ? "dashboard_active" : "dashboard_inactive"}`} style={{cursor : "pointer"}}>Videos</div>
-                <div onClick={()=>handledashboardplaylists(dashboard._id)} className={`nav-item me-4 ${location.pathname === "/dashboard/playlists" ? "dashboard_active" : "dashboard_inactive"}`} style={{cursor : "pointer"}}>Playlists</div>
-                <div onClick={()=>handledashboardtweets(dashboard._id)} className={`nav-item me-4 ${location.pathname === "/dashboard/tweets" ? "dashboard_active" : "dashboard_inactive"}`} style={{cursor : "pointer"}}>Tweets</div>
+        <div className='px-2'>
+            <nav className="dashboard-nav">
+                <div onClick={()=>handledashboardvideos(dashboard._id)} className={`nav-item ${location.pathname === "/dashboard/videos" ? "dashboard_active" : "dashboard_inactive"}`}>Videos</div>
+                <div onClick={()=>handledashboardplaylists(dashboard._id)} className={`nav-item ${location.pathname === "/dashboard/playlists" ? "dashboard_active" : "dashboard_inactive"}`}>Playlists</div>
+                <div onClick={()=>handledashboardtweets(dashboard._id)} className={`nav-item ${location.pathname === "/dashboard/tweets" ? "dashboard_active" : "dashboard_inactive"}`}>Tweets</div>
             </nav>
             <main>
                 <Outlet/>
